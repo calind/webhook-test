@@ -1,4 +1,6 @@
 <?php
+header( 'X-Is-mobile: ' . ( pl_is_mobile() ? 'yes' : 'no' ) );
+
 /**
  * Twenty Twelve functions and definitions
  *
