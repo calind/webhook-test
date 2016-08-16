@@ -78,6 +78,10 @@ View the theme settings under "Appearance" -> Customize.
 
 == Changelog ==
 
+#### 1.1.1
+* Fixed breadcrumbs bug / css fix
+* Styling fixes
+
 #### 1.1.0
 * Style tweaks
 * Updated language .pot file

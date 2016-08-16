@@ -4,7 +4,7 @@
  *
  * @package FreeStore
  */
-define( 'FREESTORE_THEME_VERSION' , '1.1.0' );
+define( 'FREESTORE_THEME_VERSION' , '1.1.1' );
 
 // Load WP included scripts
 require get_template_directory() . '/includes/inc/template-tags.php';
