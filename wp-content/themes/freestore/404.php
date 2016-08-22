@@ -22,7 +22,7 @@ get_header(); ?>
 
 				<div class="page-content">
 					<p>
-                        <?php echo wp_kses_post( get_theme_mod( 'freestore-website-error-head', __( 'It looks like that page does not exist. <br />Return home or try a search', 'freestore' ) ) ); ?>
+                        <?php echo wp_kses_post( get_theme_mod( 'freestore-website-error-msg', __( 'It looks like that page does not exist. <br />Return home or try a search', 'freestore' ) ) ); ?>
 					</p>
 
 				</div><!-- .page-content -->

@@ -78,6 +78,9 @@ View the theme settings under "Appearance" -> Customize.
 
 == Changelog ==
 
+#### 1.1.2
+* Fix 404 page bug - message text
+
 #### 1.1.1
 * Fixed breadcrumbs bug / css fix
 * Styling fixes

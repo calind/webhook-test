@@ -4,7 +4,7 @@
  *
  * @package FreeStore
  */
-define( 'FREESTORE_THEME_VERSION' , '1.1.1' );
+define( 'FREESTORE_THEME_VERSION' , '1.1.2' );
 
 // Load WP included scripts
 require get_template_directory() . '/includes/inc/template-tags.php';
@@ -90,7 +90,7 @@ function freestore_setup() {
 		'height'      => 145,
 		'width'       => 280,
 		'flex-height' => true,
-		'flex-width'  => false,
+		'flex-width'  => true,
 	) );
 
 	// Set up the WordPress core custom background feature.
