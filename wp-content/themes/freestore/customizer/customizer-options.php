@@ -81,6 +81,45 @@ function customizer_library_freestore_options() {
 		'type'    => 'color',
 		'default' => $blocks_bg_color,
 	);
+    
+    
+    $choices = array(
+        'freestore-page-fimage-layout-none' => __( 'None', 'freestore' ),
+        'freestore-page-fimage-layout-standard' => __( 'Standard', 'freestore' ),
+        'freestore-page-fimage-layout-banner' => __( 'Page Banner', 'freestore' )
+    );
+    $options['freestore-page-fimage-layout'] = array(
+        'id' => 'freestore-page-fimage-layout',
+        'label'   => __( 'Featured Image Layout', 'freestore' ),
+        'section' => $section,
+        'type'    => 'select',
+        'choices' => $choices,
+        'default' => 'freestore-page-fimage-layout-none'
+    );
+    $choices = array(
+        'freestore-page-fimage-size-extra-small' => __( 'Extra Small Banner', 'freestore' ),
+        'freestore-page-fimage-size-small' => __( 'Small Banner', 'freestore' ),
+        'freestore-page-fimage-size-medium' => __( 'Medium Banner', 'freestore' ),
+        'freestore-page-fimage-size-large' => __( 'Large Banner', 'freestore' ),
+        'freestore-page-fimage-size-actual' => __( 'Use Proper Image', 'freestore' )
+    );
+    $options['freestore-page-fimage-size'] = array(
+        'id' => 'freestore-page-fimage-size',
+        'label'   => __( 'Page Banner Size', 'freestore' ),
+        'section' => $section,
+        'type'    => 'select',
+        'choices' => $choices,
+        'default' => 'freestore-page-fimage-size-medium'
+    );
+    $options['freestore-page-fimage-fullwidth'] = array(
+        'id' => 'freestore-page-fimage-fullwidth',
+        'label'   => __( 'Full Width Banner', 'freestore' ),
+        'section' => $section,
+        'type'    => 'checkbox',
+        'description' => __( 'Select this box to stretch the page banner to full width', 'freestore' ),
+        'default' => 0,
+    );
+    
 	
 	// WooCommerce style Layout
     if ( freestore_is_woocommerce_activated() ) :
@@ -486,6 +525,14 @@ function customizer_library_freestore_options() {
         'description' => __( 'This is the phone number in the header top bar', 'freestore' )
     );
     
+    $options['freestore-website-search-txt'] = array(
+        'id' => 'freestore-website-search-txt',
+        'label'   => __( 'Search Placeholder Text', 'freestore' ),
+        'section' => $section,
+        'type'    => 'text',
+        'default' => __( 'Search &amp; hit enter&hellip;', 'freestore' )
+    );
+    
     $options['freestore-website-txt-copy'] = array(
         'id' => 'freestore-website-txt-copy',
         'label'   => __( 'Site Copy Text', 'freestore' ),
@@ -510,9 +557,17 @@ function customizer_library_freestore_options() {
         'default' => __( 'It looks like that page does not exist. <br />Return home or try a search', 'freestore'),
         'description' => __( 'Enter the default text on the 404 error page (Page not found)', 'freestore' )
     );
+    $options['freestore-website-nosearch-head'] = array(
+        'id' => 'freestore-website-nosearch-head',
+        'label'   => __( 'No Results Heading', 'freestore' ),
+        'section' => $section,
+        'type'    => 'text',
+        'default' => __( 'Nothing Found', 'freestore'),
+        'description' => __( 'Enter the header for when no search results are found', 'freestore' )
+    );
     $options['freestore-website-nosearch-msg'] = array(
         'id' => 'freestore-website-nosearch-msg',
-        'label'   => __( 'No Search Results', 'freestore' ),
+        'label'   => __( 'No Results Text', 'freestore' ),
         'section' => $section,
         'type'    => 'textarea',
         'default' => __( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'freestore'),

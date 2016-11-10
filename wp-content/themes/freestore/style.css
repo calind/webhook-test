@@ -3,8 +3,8 @@ Theme Name: FreeStore
 Theme URI: https://kairaweb.com/theme/freestore/
 Author: Kaira
 Author URI: https://kairaweb.com/
-Description: With FreeStore we give you everything for free... a fully responsive multipurpose WordPress premium theme to download and use as you want. We give you lots of settings and integrate with some of the best plugins to help you build a beautiful website or online store. Create detailed page layouts with SiteOrigin's drag and drop Page Builder... Sell products beautifully online with WooCommerce... Or select between our different layouts and page templates to build the site you want! Give it a go :)
-Version: 1.1.2
+Description: With FreeStore we give you everything for free... a fully responsive multipurpose WordPress premium theme to download and use as you want. We give you lots of settings and integrate with some of the best plugins to help you build a beautiful website or online ecommerce store. Create detailed page layouts with SiteOrigin's drag and drop Page Builder... Sell products beautifully online with WooCommerce e-commerce plugin... And select between our different layouts and page templates to build the site you want! Give it a go :)
+Version: 1.1.7
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: freestore
@@ -594,11 +594,13 @@ a:active {
 	top: 143px;
 	left: -999em;
 	z-index: 99999;
+	display: none;
 }
 
 .main-navigation ul ul ul {
 	left: -999em;
 	top: -3px;
+	display: none;
 }
 
 .main-navigation ul ul li {
@@ -617,11 +619,13 @@ a:active {
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
 	left: auto;
+	display: block;
 }
 
 .main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
+.main-navigation ul ul li:focus > ul {
 	left: 100%;
+	display: block;
 }
 
 .main-navigation .current_page_item > a,
@@ -633,6 +637,42 @@ a:active {
 .main-navigation ul ul .current-menu-item > a,
 .main-navigation ul ul .current_page_ancestor > a {
 	color: #FFF;
+}
+
+/* ---- Menu Switch Class ---- */
+
+.main-navigation .nav-switch ul {
+	left: auto;
+    right: -999em;
+}
+
+.main-navigation li.nav-switch:hover > ul,
+.main-navigation li.nav-switch:focus > ul {
+	left: auto;
+	right: 0;
+	display: block;
+}
+.main-navigation li.nav-switch ul li:hover > ul,
+.main-navigation li.nav-switch ul li:focus > ul {
+	left: auto;
+	right: 100%;
+	display: block;
+}
+
+.main-navigation li.nav-sub-switch:hover > ul,
+.main-navigation li.nav-sub-switch:focus > ul {
+	left: auto;
+	right: 100%;
+	display: block;
+}
+
+.main-navigation li.nav-sub-switch-all:hover > ul,
+.main-navigation li.nav-sub-switch-all:focus > ul,
+.main-navigation li.nav-sub-switch-all ul li:hover > ul,
+.main-navigation li.nav-sub-switch-all ul li:focus > ul {
+	left: auto;
+	right: 100%;
+	display: block;
 }
 
 /* Small menu. */
@@ -1352,10 +1392,14 @@ h1.entry-title {
 .entry-summary {
 	margin: 1.5em 0 0;
 }
+.entry-content-img {
+	margin: 0 0 20px;
+}
 .page-content img,
 .entry-content img,
 .entry-summary img {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    margin-bottom: 1.5em;
 }
 
 .page-links {
@@ -1365,6 +1409,25 @@ h1.entry-title {
 
 .wp-caption img {
     box-shadow: none;
+}
+
+.page-fimage-banner {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+.page-fimage-banner img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+.page-fimage-banner-actual {
+	text-align: center;
+}
+.page-fimage-banner-actual img {
+	width: auto;
+	height: auto;
+	display: inline-block;
 }
 
 /* -------- Blog Layout -------- */
@@ -1800,10 +1863,6 @@ object {
 	.menu-dropdown-btn {
     	display: block;
     }
-    .open-page-item > ul.children,
-    .open-page-item > ul.sub-menu {
-    	display: block !important;
-    }
 	.main-navigation ul ul {
         position: relative !important;
         border: 0;
@@ -1813,7 +1872,11 @@ object {
         background-color: rgba(255, 255, 255, 0.1) !important;
         padding: 0;
         margin: 0;
-        display: none;
+        display: none !important;
+    }
+    .open-page-item > ul.children,
+    .open-page-item > ul.sub-menu {
+    	display: block !important;
     }
     .main-navigation ul ul li:last-child a,
     .main-navigation ul ul li a {
@@ -1821,8 +1884,9 @@ object {
         padding: 7px 12px;
         width: auto;
     }
+    .main-navigation ul ul li:hover,
     .main-navigation ul ul li a:hover {
-          background: none;
+        background: none !important;
     }
     .main-navigation ul ul li:last-child a {
     	padding: 7px 12px 7px;
@@ -1992,6 +2056,7 @@ input[type="submit"],
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,
 .single-product span.onsale,
 .main-navigation ul ul a:hover,
+.main-navigation ul ul li:hover,
 .main-navigation ul ul li.current-menu-item > a,
 .main-navigation ul ul li.current_page_item > a,
 .main-navigation ul ul li.current-menu-parent > a,

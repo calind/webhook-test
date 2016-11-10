@@ -12,6 +12,16 @@
 			<?php freestore_posted_on(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
+	
+	<?php if ( get_theme_mod( 'freestore-page-fimage-layout' ) == 'freestore-page-fimage-layout-standard' ) : ?>
+	
+		<?php if ( has_post_thumbnail() ) : ?>
+			<div class="entry-content-img">
+				<?php the_post_thumbnail( 'full' ); ?>
+			</div>
+		<?php endif; ?>
+		
+	<?php endif; ?>
 
 	<div class="entry-content">
 		<?php the_content(); ?>

@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-With FreeStore we give you everything for free... a fully responsive multipurpose WordPress premium theme to download and use as you want. We give you lots of settings and integrate with some of the best plugins to help you build a beautiful website or online store. Create detailed page layouts with SiteOrigin's drag and drop Page Builder... Sell products beautifully online with WooCommerce... Or select between our different layouts and page templates to build the site you want! Give it a go :)
+With FreeStore we give you everything for free... a fully responsive multipurpose WordPress premium theme to download and use as you want. We give you lots of settings and integrate with some of the best plugins to help you build a beautiful website or online ecommerce store. Create detailed page layouts with SiteOrigin's drag and drop Page Builder... Sell products beautifully online with WooCommerce e-commerce plugin... And select between our different layouts and page templates to build the site you want! Give it a go :)
 
 == License ==
 
@@ -77,6 +77,26 @@ View the theme settings under "Appearance" -> Customize.
 1. Featured Images work best at a minimum of 1100 wide and 420 high.
 
 == Changelog ==
+
+#### 1.1.7
+* Styling fixes
+* Added setting and options for featured image layout on posts & pages @ Appearance -> Customize -> Layout Options
+* Updated language .pot file
+
+#### 1.1.6
+* Mobile menu CSS fix
+
+#### 1.1.5
+* Style fix on navigation dropdown
+* Option to add custom Class to switch navigation dropdown side
+
+#### 1.1.4
+* Fix menu sub nav for iPad & mobile
+
+#### 1.1.3
+* Add Setting to change 'Nothing Found' heading on no results list
+* Add setting to change search placeholder text
+* Updated language .pot file
 
 #### 1.1.2
 * Fix 404 page bug - message text

@@ -61,6 +61,25 @@
             }
         }
         
+        // Show / Hide Page Featured Image Layout
+        var freestore_page_layout_value = $( '#customize-control-freestore-page-fimage-layout select' ).val();
+        freestore_page_layout_type_check( freestore_page_layout_value );
+        
+        $( '#customize-control-freestore-page-fimage-layout select' ).on( 'change', function() {
+            var freestore_page_select_value = $( this ).val();
+            freestore_page_layout_type_check( freestore_page_select_value );
+        });
+        
+        function freestore_page_layout_type_check( freestore_page_select_value ) {
+            if ( freestore_page_select_value == 'freestore-page-fimage-layout-banner' ) {
+                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-size' ).show();
+                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-fullwidth' ).show();
+            } else {
+                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-size' ).hide();
+                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-fullwidth' ).hide();
+            }
+        }
+        
         //Show / Hide Color depending on footer selected
         var the_footer_select_value = $( '#customize-control-freestore-footer-layout select' ).val();
         freestore_customizer_footer_check( the_footer_select_value );

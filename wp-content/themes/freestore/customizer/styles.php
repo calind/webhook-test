@@ -182,6 +182,7 @@ function customizer_library_freestore_build_styles() {
                 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,
                 .single-product span.onsale,
                 .main-navigation ul ul a:hover,
+                .main-navigation ul ul li:hover,
                 .main-navigation ul ul li.current-menu-item > a,
                 .main-navigation ul ul li.current_page_item > a,
                 .main-navigation ul ul li.current-menu-parent > a,

@@ -31,5 +31,11 @@ global $woocommerce;
 		<?php get_template_part( '/templates/slider/homepage-slider' ); ?>
 		
 	<?php endif; ?>
+	
+	<?php if ( !is_front_page() && get_theme_mod( 'freestore-page-fimage-layout' ) == 'freestore-page-fimage-layout-banner' ) : ?>
+		
+		<?php get_template_part( '/templates/page-banner' ); ?>
+	
+	<?php endif; ?>
 
 	<div class="site-container <?php echo ( ! is_active_sidebar( 'sidebar-1' ) ) ? sanitize_html_class( 'content-no-sidebar' ) : sanitize_html_class( 'content-has-sidebar' ); ?>">
