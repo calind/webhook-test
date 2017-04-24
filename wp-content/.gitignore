@@ -1,17 +1,31 @@
-
 #
 # This gitignore file is generated and managed by Presslabs.
 # It's content will be overwritten. Please modify the .gitignore one level up.
 #
 
-uploads
+/uploads
+/uploads/**
 
 /blogs.dir
+/blogs.dir/**
+
 /upgrade
+/upgrade/**
+
 /backup-db
+/backup-db/**
+
 /backups
+/backups/**
+
 /cache
+/cache/**
+
 /gdbackup
+/gdbackup/**
 
 /plugins/special-recent-posts/cache
+/plugins/special-recent-posts/cache/**
+
 /plugins/si-contact-form/captcha/cache
+/plugins/si-contact-form/captcha/cache/**
