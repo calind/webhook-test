@@ -5,6 +5,7 @@
 #
 
 /uploads
+/uploads/**
 /blogs.dir
 /upgrade
 /backup-db
