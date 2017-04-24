@@ -4,8 +4,8 @@
 # It's content will be overwritten. Please modify the .gitignore one level up.
 #
 
-/uploads
-/uploads/**
+uploads
+
 /blogs.dir
 /upgrade
 /backup-db
