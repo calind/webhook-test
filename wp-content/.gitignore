@@ -7,7 +7,7 @@
 /uploads/**
 
 /blogs.dir
-/blogs.dir/**
+#/blogs.dir/**
 
 /upgrade
 /upgrade/**
