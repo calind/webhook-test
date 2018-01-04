@@ -1,15 +1,14 @@
 === FreeStore ===
 Contributors: Kaira
-Donate link: 
+Donate link: https://www.paypal.com/za/cgi-bin/webscr?cmd=_flow&SESSION=f7MHUxQAulCXUYLOJQ7g2j2g3XjF6i_Xos57tLI8XMJHVvwXAf6PZaUQEHy&dispatch=5885d80a13c0db1f8e263663d3faee8d94717bd303200c3af9aadd01a5f55080
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, editor-style, featured-images, footer-widgets, full-width-template, theme-options, translation-ready, blog, e-commerce
-Tested up to: 4.1
-Stable tag: 3.7
+Requires at least: 4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-With FreeStore we give you everything for free... a fully responsive multipurpose WordPress premium theme to download and use as you want. We give you lots of settings and integrate with some of the best plugins to help you build a beautiful website or online ecommerce store. Create detailed page layouts with SiteOrigin's drag and drop Page Builder... Sell products beautifully online with WooCommerce e-commerce plugin... And select between our different layouts and page templates to build the site you want! Give it a go :)
+With FreeStore we give you everything for free... a fully responsive multipurpose WordPress/WooCommerce premium theme to download and use as you want. We packed FreeStore with a bunch of settings, all built neatly into the WordPress Customizer so you can view your changes live before going live, we've also integrated with some of the best plugins to help you build a beautiful website or online e-commerce store. Create detailed page layouts with SiteOrigin's easy to use drag and drop Page Builder... Setup your shop and sell products beautifully with the WooCommerce e-commerce plugin... FreeStore comes with lots of different layout settings and multiple page templates to build the website you need! Have it all for FREE, donate if you like ;) Give it a go :)
 
 == License ==
 
@@ -77,6 +76,34 @@ View the theme settings under "Appearance" -> Customize.
 1. Featured Images work best at a minimum of 1100 wide and 420 high.
 
 == Changelog ==
+
+#### 1.2.1
+* Style tweaks/fixes
+* Added setting to set WooCommerce Shop Products per page
+* Added setting to set WooCommerce Shop Products amount per row
+* Added setting to remove WooCommerce Product borders
+* Added setting to change Shop Product/Archive/Single pages to Left Sidebar
+* Added setting to change Blog List/Archive/Single/Search pages to Left Sidebar
+* Added setting to remove Category/Tag Archive pre text
+* Fix slider to have set height on mobile/small screens
+* Updated language .pot file
+
+#### 1.2.0
+* Updated/fixed compatibility with new WooCommerce Gallery
+
+#### 1.1.9
+* Styling tweaks/fixes
+* Added missing translations
+* Neatened up Customizer Theme Settings
+* Added setting to adjust Sidebar width
+* Added a few extra settings for header/logo/woocommerce + more
+* Updated language .pot file
+
+#### 1.1.8
+* mobile styling fixes/tweaks
+* Added more social links
+* Added setting to add any required social link
+* Updated language .pot file
 
 #### 1.1.7
 * Styling fixes

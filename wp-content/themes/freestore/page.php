@@ -15,7 +15,9 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 			
-			<?php get_template_part( '/templates/titlebar' ); ?>
+			<?php if ( !get_theme_mod( 'freestore-page-titles' ) ) : ?>
+				<?php get_template_part( '/templates/titlebar' ); ?>
+			<?php endif; ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 

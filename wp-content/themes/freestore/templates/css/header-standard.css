@@ -71,7 +71,8 @@ FreeStore - Header Standard Styling
     padding: 60px 20px 65px;
 }
 
-.main-navigation ul ul a {
+.main-navigation ul ul a,
+.main-navigation ul li:last-child ul a {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) !important;
     white-space: nowrap;
     text-align: left;
@@ -210,6 +211,7 @@ a.header-cart-contents {
     .main-navigation li {
         display: block;
         float: none;
+        margin: 0 0 3px;
     }
     .main-navigation li a {
         display: block;
@@ -282,9 +284,8 @@ a.header-cart-contents {
     }
     .site-topbar-left .menu {
         display: inline-block;
-    }
-    .site-topbar-left ul {
-        padding: 12px 0 20px !important;
+        vertical-align: middle;
+        padding: 2px 0;
     }
     .site-topbar-right {
         padding: 0 0 6px !important;

@@ -3,12 +3,14 @@ Theme Name: FreeStore
 Theme URI: https://kairaweb.com/theme/freestore/
 Author: Kaira
 Author URI: https://kairaweb.com/
-Description: With FreeStore we give you everything for free... a fully responsive multipurpose WordPress premium theme to download and use as you want. We give you lots of settings and integrate with some of the best plugins to help you build a beautiful website or online ecommerce store. Create detailed page layouts with SiteOrigin's drag and drop Page Builder... Sell products beautifully online with WooCommerce e-commerce plugin... And select between our different layouts and page templates to build the site you want! Give it a go :)
-Version: 1.1.7
+Description: With FreeStore we give you everything for free... a fully responsive multipurpose WordPress/WooCommerce premium theme to download and use as you want. We packed FreeStore with a bunch of settings, all built neatly into the WordPress Customizer so you can view your changes live before going live, we've also integrated with some of the best plugins to help you build a beautiful website or online e-commerce store. Create detailed page layouts with SiteOrigin's easy to use drag and drop Page Builder... Setup your shop and sell products beautifully with the WooCommerce e-commerce plugin... FreeStore comes with lots of different layout settings and multiple page templates to build the website you need! Have it all for FREE, donate if you like ;) Give it a go :)
+Version: 1.2.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: freestore
 Tags: one-column, two-columns, left-sidebar, right-sidebar, flexible-header, custom-background, custom-colors, custom-header, editor-style, featured-images, footer-widgets, full-width-template, theme-options, translation-ready, blog, e-commerce
+
+Donate Link: https://www.paypal.com/za/cgi-bin/webscr?cmd=_flow&SESSION=f7MHUxQAulCXUYLOJQ7g2j2g3XjF6i_Xos57tLI8XMJHVvwXAf6PZaUQEHy&dispatch=5885d80a13c0db1f8e263663d3faee8d94717bd303200c3af9aadd01a5f55080
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -492,7 +494,7 @@ button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	
+
 }
 
 button:focus,
@@ -556,11 +558,11 @@ a:visited {
 a:hover,
 a:focus,
 a:active {
-	
+
 }
 
 a:focus {
-	
+
 }
 
 a:hover,
@@ -583,6 +585,13 @@ a:active {
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+}
+.main-navigation.freestore-nav-underline a {
+	-webkit-transition: box-shadow 0.2s ease 0s;
+    -moz-transition: box-shadow 0.2s ease 0s;
+    -ms-transition: box-shadow 0.2s ease 0s;
+    -o-transition: box-shadow 0.2s ease 0s;
+    transition: box-shadow 0.2s ease 0s;
 }
 
 .main-navigation ul ul {
@@ -608,8 +617,9 @@ a:active {
     width: 100%;
     display: block;
 }
-.main-navigation li:hover > a,
-.main-navigation li.focus > a {
+.main-navigation.freestore-nav-underline li:hover > a,
+.main-navigation.freestore-nav-underline li.focus > a {
+	box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.2) inset;
 }
 
 .main-navigation ul ul :hover > a {
@@ -628,15 +638,16 @@ a:active {
 	display: block;
 }
 
-.main-navigation .current_page_item > a,
-.main-navigation .current-menu-item > a,
-.main-navigation .current_page_ancestor > a {
+.main-navigation.freestore-nav-underline .current_page_item > a,
+.main-navigation.freestore-nav-underline .current-menu-item > a,
+.main-navigation.freestore-nav-underline .current_page_ancestor > a {
 	box-shadow: 0 -3px 0 #000 inset;
 }
 .main-navigation ul ul .current_page_item > a,
 .main-navigation ul ul .current-menu-item > a,
 .main-navigation ul ul .current_page_ancestor > a {
-	color: #FFF;
+	color: #FFF !important;
+	box-shadow: none;
 }
 
 /* ---- Menu Switch Class ---- */
@@ -852,7 +863,7 @@ a:active {
     list-style-type: none;
 }
 .widget-area .widget ul li a {
-    
+
 }
 
 /*--------------------------------------------------------------
@@ -882,13 +893,11 @@ padding: 48px 0 40px 2%;}
 }
 
 .page-template-template-left-sidebar-php .content-area {
-	width: 75%;
 	float: left;
 	padding: 30px 0 30px 2%;
 }
 
 .page-template-template-left-sidebar-php .widget-area {
-	width: 25%;
 	float: left;
 	padding: 44px 2% 30px 0;
 }
@@ -932,6 +941,11 @@ padding: 48px 0 40px 2%;}
 	width: 100%;
 	padding: 30px 0;
 	box-shadow: none;
+}
+
+body.woocommerce.freestore-shop-remove-title .page-title,
+body.woocommerce.freestore-shop-remove-title .woocommerce-breadcrumb {
+	display: none;
 }
 
 /* -------- Page Styling - Raised -------- */
@@ -1001,24 +1015,25 @@ body.freestore-page-styling-raised.page-template-template-left-sidebar .widget-a
 	padding: 0px 0 5px;
 }
 
-h1.entry-title {
+.entry-header h3.entry-title {
+	font-size: 32px;
 	font-weight: 300;
 }
 
 .breadcrumbs {
     position: absolute;
-	
+
     top: 15px;
     right: 0;
     font-size: 11px;
     text-transform: uppercase;
 }
 .breadcrumbs > span {
-	
+
 }
 .breadcrumbs span a {
     color: inherit;
-	
+
 }
 
 
@@ -1093,7 +1108,7 @@ h1.entry-title {
 
 .site-topbar-right {
 	float: right;
-	padding: 10px 0 0;
+	padding: 8px 0 0;
 }
 .header-social-icon {
     font-size: 16px;
@@ -1140,14 +1155,14 @@ h1.entry-title {
 .freestore-page-styling-raised .home-slider-wrap {
     margin: 0 0 30px;
 }
-.home-slider-remove { 
+.home-slider-remove {
     height: 403px !important;
     overflow: hidden;
     background-image: url(images/loader.gif);
     background-repeat: no-repeat;
     background-position: center center;
 }
-.home-slider-remove .home-slider { 
+.home-slider-remove .home-slider {
     visibility: hidden;
 }
 .home-slider-block {
@@ -1451,7 +1466,7 @@ h1.entry-title {
 /* -------- Blog Standard Layout -------- */
 
 .blog-post-standard-layout {
-	
+
 }
 .blog-post-standard-layout .post-loop-thumbnail {
     float: left;
@@ -1570,7 +1585,7 @@ h1.entry-title {
 /* -------- Blog Top Layout -------- */
 
 .blog-post-top-layout {
-	
+
 }
 .blog-post-top-layout .post-loop-thumbnail {
     display: block;
@@ -1581,7 +1596,7 @@ h1.entry-title {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 .blog-post-top-layout .post-loop-content {
-    
+
 }
 .blog-post-top-layout .post-loop-content .entry-header {
     margin: 0;
@@ -1603,7 +1618,7 @@ h1.entry-title {
 }
 
 .blog-post-top-layout.has-post-thumbnail .post-loop-content {
-    
+
 }
 
 
@@ -1627,7 +1642,7 @@ h1.entry-title {
 }
 
 .comments-area {
-    
+
 }
 
 .comments-title {
@@ -1647,7 +1662,7 @@ h1.entry-title {
 }
 
 .comment {
-    
+
 }
 
 .comment-author {
@@ -1675,7 +1690,7 @@ h1.entry-title {
 }
 
 .comment-content {
-    
+
 }
 
 .comment .reply {
@@ -1813,53 +1828,155 @@ object {
 	display: block;
 }
 
+/* -- Blog Left Sidebar -- */
+body.blog.freestore-blog-left-sidebar .content-area,
+body.archive.category.freestore-blog-archives-left-sidebar .content-area,
+body.archive.tag.freestore-blog-archives-left-sidebar .content-area,
+body.single.single-post.freestore-blog-single-left-sidebar .content-area,
+body.search-results.freestore-blog-search-left-sidebar .content-area {
+    float: right;
+    padding: 30px 0 30px 2%;
+    box-shadow: 1px 0 0 #D7D7D7 inset;
+}
+body.blog.freestore-blog-left-sidebar .widget-area,
+body.archive.category.freestore-blog-archives-left-sidebar .widget-area,
+body.archive.tag.freestore-blog-archives-left-sidebar .widget-area,
+body.single.single-post.freestore-blog-single-left-sidebar .widget-area,
+body.search-results.freestore-blog-search-left-sidebar .widget-area {
+    float: right;
+    padding: 30px 2% 30px 0;
+    box-shadow: 1px 0 0 #D7D7D7;
+}
 
-.post-type-archive-product.woocommerce.freestore-shop-full-width #container,
-.post-type-archive-product.woocommerce-page.freestore-shop-full-width #container {
+body.blog.freestore-blog-left-sidebar.freestore-page-styling-raised .content-area,
+body.archive.category.freestore-blog-archives-left-sidebar.freestore-page-styling-raised .content-area,
+body.archive.tag.freestore-blog-archives-left-sidebar.freestore-page-styling-raised .content-area,
+body.single.single-post.freestore-blog-single-left-sidebar.freestore-page-styling-raised .content-area,
+body.search-results.freestore-blog-search-left-sidebar.freestore-page-styling-raised .content-area {
+    float: right;
+    padding: 25px 25px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+}
+body.blog.freestore-blog-left-sidebar.freestore-page-styling-raised .widget-area,
+body.archive.category.freestore-blog-archives-left-sidebar.freestore-page-styling-raised .widget-area,
+body.archive.tag.freestore-blog-archives-left-sidebar.freestore-page-styling-raised .widget-area,
+body.single.single-post.freestore-blog-single-left-sidebar.freestore-page-styling-raised .widget-area,
+body.search-results.freestore-blog-search-left-sidebar.freestore-page-styling-raised .widget-area {
+    float: right;
+    padding: 25px 25px;
+    margin: 0 2% 50px 0;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+}
+
+/* -- Shop Left Sidebar -- */
+body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar #container,
+body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar #container,
+body.archive.woocommerce.freestore-shop-archives-left-sidebar #container,
+body.archive.woocommerce-page.freestore-shop-archives-left-sidebar #container,
+body.single-product.woocommerce.freestore-shop-single-left-sidebar #container,
+body.single-product.woocommerce-page.freestore-shop-single-left-sidebar #container {
+    box-shadow: 1px 0 0 #D7D7D7 inset;
+    float: right;
+    padding: 30px 0 30px 2%;
+}
+body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar.freestore-page-styling-raised #container,
+body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar.freestore-page-styling-raised #container,
+body.archive.woocommerce.freestore-shop-archives-left-sidebar.freestore-page-styling-raised #container,
+body.archive.woocommerce-page.freestore-shop-archives-left-sidebar.freestore-page-styling-raised #container,
+body.single-product.woocommerce.freestore-shop-single-left-sidebar.freestore-page-styling-raised #container,
+body.single-product.woocommerce-page.freestore-shop-single-left-sidebar.freestore-page-styling-raised #container {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+    padding: 25px 25px;
+}
+body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar .widget-area,
+body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar .widget-area,
+body.archive.woocommerce.freestore-shop-archives-left-sidebar .widget-area,
+body.archive.woocommerce-page.freestore-shop-archives-left-sidebar .widget-area,
+body.single-product.woocommerce.freestore-shop-single-left-sidebar .widget-area,
+body.single-product.woocommerce-page.freestore-shop-single-left-sidebar .widget-area {
+    box-shadow: 1px 0 0 #D7D7D7;
+    float: left;
+    padding: 43px 2% 40px 0;
+}
+body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar.freestore-page-styling-raised .widget-area,
+body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar.freestore-page-styling-raised .widget-area,
+body.archive.woocommerce.freestore-shop-archives-left-sidebar.freestore-page-styling-raised .widget-area,
+body.archive.woocommerce-page.freestore-shop-archives-left-sidebar.freestore-page-styling-raised .widget-area,
+body.single-product.woocommerce.freestore-shop-single-left-sidebar.freestore-page-styling-raised .widget-area,
+body.single-product.woocommerce-page.freestore-shop-single-left-sidebar.freestore-page-styling-raised .widget-area {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+    float: left;
+    padding: 25px 25px;
+    margin: 0 2% 50px 0;
+}
+
+/* -- Shop Full Width -- */
+body.post-type-archive-product.woocommerce.freestore-shop-full-width #container,
+body.post-type-archive-product.woocommerce-page.freestore-shop-full-width #container,
+body.archive.woocommerce.freestore-shop-archives-full-width #container,
+body.archive.woocommerce-page.freestore-shop-archives-full-width #container,
+body.single-product.woocommerce.freestore-shop-single-full-width #container,
+body.single-product.woocommerce-page.freestore-shop-single-full-width #container {
 	box-shadow: none;
 	width: 100%;
 	float: none;
 	padding: 25px 0;
 }
-.post-type-archive-product.woocommerce.freestore-shop-full-width.freestore-page-styling-raised #container,
-.post-type-archive-product.woocommerce-page.freestore-shop-full-width.freestore-page-styling-raised #container {
+body.post-type-archive-product.woocommerce.freestore-shop-full-width.freestore-page-styling-raised #container,
+body.post-type-archive-product.woocommerce-page.freestore-shop-full-width.freestore-page-styling-raised #container,
+body.archive.woocommerce.freestore-shop-archives-full-width.freestore-page-styling-raised #container,
+body.archive.woocommerce-page.freestore-shop-archives-full-width.freestore-page-styling-raised #container,
+body.single-product.woocommerce.freestore-shop-single-full-width.freestore-page-styling-raised #container,
+body.single-product.woocommerce-page.freestore-shop-single-full-width.freestore-page-styling-raised #container {
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
 	padding: 25px 25px;
 }
-.post-type-archive-product.woocommerce.freestore-shop-full-width.widget-area,
-.post-type-archive-product.woocommerce-page.freestore-shop-full-width .widget-area {
+body.post-type-archive-product.woocommerce.freestore-shop-full-width .widget-area,
+body.post-type-archive-product.woocommerce-page.freestore-shop-full-width .widget-area,
+body.archive.woocommerce.freestore-shop-archives-full-width .widget-area,
+body.archive.woocommerce-page.freestore-shop-archives-full-width .widget-area,
+body.single-product.woocommerce.freestore-shop-single-full-width .widget-area,
+body.single-product.woocommerce-page.freestore-shop-single-full-width .widget-area {
 	display: none;
 }
-.post-type-archive-product.woocommerce.freestore-shop-full-width .woocommerce-breadcrumb,
-.post-type-archive-product.woocommerce-page.freestore-shop-full-width .woocommerce-breadcrumb {
+body.post-type-archive-product.woocommerce.freestore-shop-full-width .woocommerce-breadcrumb,
+body.post-type-archive-product.woocommerce-page.freestore-shop-full-width .woocommerce-breadcrumb,
+body.archive.woocommerce.freestore-shop-archives-full-width .woocommerce-breadcrumb,
+body.archive.woocommerce-page.freestore-shop-archives-full-width .woocommerce-breadcrumb,
+body.single-product.woocommerce.freestore-shop-single-full-width .woocommerce-breadcrumb,
+body.single-product.woocommerce-page.freestore-shop-single-full-width .woocommerce-breadcrumb {
 	right: 0;
 }
-.post-type-archive-product.woocommerce.freestore-shop-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
-.post-type-archive-product.woocommerce-page.freestore-shop-full-width.freestore-page-styling-raised .woocommerce-breadcrumb {
+body.post-type-archive-product.woocommerce.freestore-shop-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
+body.post-type-archive-product.woocommerce-page.freestore-shop-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
+body.archive.woocommerce.freestore-shop-archives-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
+body.archive.woocommerce-page.freestore-shop-archives-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
+body.single-product.woocommerce.freestore-shop-single-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
+body.single-product.woocommerce-page.freestore-shop-single-full-width.freestore-page-styling-raised .woocommerce-breadcrumb {
 	right: 25px;
 }
 
 @media only screen and (max-width: 1180px) {
-	
+
 	.home-slider-block h3 {
 		font-size: 42px;
 	}
-	
+
 }
 
 @media only screen and (max-width: 1020px) {
-	
+
 	.home-slider-block-inner {
 	    font-size: 16px;
 	}
 	.home-slider-block h3 {
     	font-size: 38px;
 	}
-	
+
 }
 
 @media screen and (max-width: 980px) {
-	
+
 	.menu-dropdown-btn {
     	display: block;
     }
@@ -1880,9 +1997,14 @@ object {
     }
     .main-navigation ul ul li:last-child a,
     .main-navigation ul ul li a {
-        box-shadow: none;
+        box-shadow: none !important;
         padding: 7px 12px;
         width: auto;
+    }
+    nav.main-navigation.freestore-nav-underline ul li a,
+    nav.main-navigation.freestore-nav-underline ul li a,
+    nav.main-navigation.freestore-nav-underline ul li a {
+    	box-shadow: none !important;
     }
     .main-navigation ul ul li:hover,
     .main-navigation ul ul li a:hover {
@@ -1891,27 +2013,43 @@ object {
     .main-navigation ul ul li:last-child a {
     	padding: 7px 12px 7px;
     }
-	
+
 }
 
 @media only screen and (max-width: 782px) {
-	
+
 	.page-template-default .content-area,
 	.woocommerce #container,
 	.woocommerce-page #container,
 	.content-area {
-	    box-shadow: none;
-		width: 100%;
-		float: none;
-		padding: 25px 0 30px;
+        box-shadow: none !important;
+        width: 100% !important;
+        float: none !important;
+        padding: 25px 0 30px !important;
+    }
+	body.freestore-page-styling-raised .content-area,
+	body.freestore-page-styling-raised.woocommerce #container,
+	body.freestore-page-styling-raised.woocommerce-page #container {
+	    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset !important;
+		width: 100% !important;
+		float: none !important;
+		padding: 25px 25px 30px !important;
 	}
 
 	.page-template-default .widget-area,
 	.widget-area {
-	    box-shadow: 0 -1px 0 #D7D7D7;
-		width: 100%;
-		float: none;
-		padding: 40px 0 5px;
+        box-shadow: 0 -1px 0 #D7D7D7;
+        width: 100% !important;
+        float: none !important;
+        padding: 40px 0 5px;
+        margin: 0 0 10px;
+    }
+	body.freestore-page-styling-raised .widget-area,
+	body.freestore-page-styling-raised.page-template-template-left-sidebar .widget-area {
+	    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset !important;
+		width: 100% !important;
+		float: none !important;
+		padding: 40px 25px 5px;
 		margin: 0 0 10px;
 	}
 	.page-template-template-left-sidebar-php .content-area {
@@ -1927,7 +2065,7 @@ object {
 		padding: 40px 0 5px;
 		margin: 0 0 10px;
 	}
-	
+
 	body.freestore-page-styling-raised .content-area,
 	body.freestore-page-styling-raised.woocommerce #container,
 	body.freestore-page-styling-raised.woocommerce-page #container {
@@ -1945,8 +2083,8 @@ object {
 		float: none;
 		margin: 0 0 30px;
 	}
-	
-	
+
+
 	.home-slider-block-inner {
 	    top: 66%;
 	    font-size: 13px;
@@ -1954,11 +2092,11 @@ object {
 	.home-slider-block h3 {
     	font-size: 24px;
 	}
-	
+
 }
 
 @media only screen and (max-width: 720px) {
-	
+
 	h1.entry-title {
 		margin: 0 0 8px;
 	}
@@ -1967,7 +2105,7 @@ object {
 		top: 0;
 		padding: 0 0 15px;
 	}
-	
+
 	.blog-post-standard-layout .post-loop-thumbnail {
 		width: 100%;
 		float: none;
@@ -1981,7 +2119,7 @@ object {
 		width: 100%;
 		float: none;
 	}
-	
+
 	.site-footer-bottom-bar-left {
 		width: 100%;
 		float: none;
@@ -1997,7 +2135,22 @@ object {
 	.site-footer-bottom-bar-right a {
     	margin: 0 4px;
 	}
-	
+
+}
+
+@media only screen and (max-width: 580px) {
+    
+    .home-slider-block {
+        height: 220px;
+    }
+    .home-slider-block img {
+        width: 100%;
+        height: 100%;
+    }
+    .home-slider-block-inner {
+        margin: -80px 0 0;
+    }
+
 }
 
 
@@ -2054,6 +2207,8 @@ input[type="submit"],
 .woocommerce #review_form #respond .form-submit input,
 .woocommerce-page #review_form #respond .form-submit input,
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,
+.woocommerce button.button.alt.disabled,
+.woocommerce button.button.alt.disabled:hover,
 .single-product span.onsale,
 .main-navigation ul ul a:hover,
 .main-navigation ul ul li:hover,
@@ -2076,8 +2231,20 @@ a,
 .site-title a,
 .error-404.not-found .page-header .page-title span,
 .search-button .fa-search,
+.main-navigation li a:hover,
+.main-navigation.freestore-nav-plain .current_page_item > a,
+.main-navigation.freestore-nav-plain .current-menu-item > a,
+.main-navigation.freestore-nav-plain .current_page_ancestor > a,
+.main-navigation.freestore-nav-underline .current_page_item > a,
+.main-navigation.freestore-nav-underline .current-menu-item > a,
+.main-navigation.freestore-nav-underline .current_page_ancestor > a,
 .header-cart-checkout.cart-has-items .fa-shopping-cart {
     color: #29a6e5;
+}
+.main-navigation.freestore-nav-underline .current_page_item > a,
+.main-navigation.freestore-nav-underline .current-menu-item > a,
+.main-navigation.freestore-nav-underline .current_page_ancestor > a {
+    box-shadow: 0 -3px 0 #29a6e5 inset;
 }
 
 

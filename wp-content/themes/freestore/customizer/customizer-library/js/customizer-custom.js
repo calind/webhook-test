@@ -1,14 +1,25 @@
 /**
- * Freestore Customizer Custom Functionality
- *
+ * Customizer Custom Functionality
  */
 ( function( $ ) {
     
     $( window ).load( function() {
         
-        // Add allowed donate button
-        var freestore_upgrade_button = '<a href="' + upgrade_button.link + '" class="freestore-upgrade-btn" target="_blank">' + upgrade_button.text + '</a>';
-        $( '.preview-notice' ).append( freestore_upgrade_button );
+        var site_layout_select_value = $( '#customize-control-freestore-site-layout select' ).val();
+        freestore_customizer_site_layout_check( site_layout_select_value );
+        
+        $( '#customize-control-freestore-site-layout select' ).on( 'change', function() {
+            var site_layout_value = $( this ).val();
+            freestore_customizer_site_layout_check( site_layout_value );
+        } );
+        
+        function freestore_customizer_site_layout_check( site_layout_value ) {
+            if ( site_layout_value == 'freestore-site-boxed' ) {
+                $( '#sub-accordion-section-colors #customize-control-freestore-boxed-bg-color' ).show();
+            } else {
+                $( '#sub-accordion-section-colors #customize-control-freestore-boxed-bg-color' ).hide();
+            }
+        }
         
         //Show / Hide Color selector for slider setting
         var the_slider_select_value = $( '#customize-control-freestore-slider-type select' ).val();
@@ -21,26 +32,26 @@
         
         function freestore_customizer_slider_check( slider_select_value ) {
             if ( slider_select_value == 'freestore-slider-default' ) {
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-meta-slider-shortcode' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-cats' ).show();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-size' ).show();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-linkto-post' ).show();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-remove-title' ).show();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-auto-scroll' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-meta-slider-shortcode' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-cats' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-size' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-linkto-post' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-remove-title' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-auto-scroll' ).show();
             } else if ( slider_select_value == 'freestore-meta-slider' ) {
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-cats' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-size' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-linkto-post' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-remove-title' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-auto-scroll' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-meta-slider-shortcode' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-cats' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-size' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-linkto-post' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-remove-title' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-auto-scroll' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-meta-slider-shortcode' ).show();
             } else {
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-cats' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-size' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-linkto-post' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-remove-title' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-slider-auto-scroll' ).hide();
-                $( '#accordion-section-freestore-slider-section #customize-control-freestore-meta-slider-shortcode' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-cats' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-size' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-linkto-post' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-remove-title' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-slider-auto-scroll' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-slider #customize-control-freestore-meta-slider-shortcode' ).hide();
             }
         }
         
@@ -55,9 +66,9 @@
         
         function freestore_customizer_page_style_check( body_style_select_value ) {
             if ( body_style_select_value == 'freestore-page-styling-flat' ) {
-                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-styling-color' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-layout #customize-control-freestore-page-styling-color' ).hide();
             } else {
-                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-styling-color' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-layout #customize-control-freestore-page-styling-color' ).show();
             }
         }
         
@@ -72,11 +83,11 @@
         
         function freestore_page_layout_type_check( freestore_page_select_value ) {
             if ( freestore_page_select_value == 'freestore-page-fimage-layout-banner' ) {
-                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-size' ).show();
-                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-fullwidth' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-pages #customize-control-freestore-page-fimage-size' ).show();
+                $( '#sub-accordion-section-freestore-panel-layout-section-pages #customize-control-freestore-page-fimage-fullwidth' ).show();
             } else {
-                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-size' ).hide();
-                $( '#accordion-section-freestore-site-layout-section #customize-control-freestore-page-fimage-fullwidth' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-pages #customize-control-freestore-page-fimage-size' ).hide();
+                $( '#sub-accordion-section-freestore-panel-layout-section-pages #customize-control-freestore-page-fimage-fullwidth' ).hide();
             }
         }
         
@@ -91,14 +102,14 @@
         
         function freestore_customizer_footer_check( footer_selected_value ) {
             if ( footer_selected_value == 'freestore-footer-layout-standard' ) {
-                $( '#accordion-section-colors #customize-control-freestore-footer-bg-color' ).removeClass( 'hide-section' );
-                $( '#accordion-section-colors #customize-control-freestore-footer-font-color' ).removeClass( 'hide-section' );
+                $( '#sub-accordion-section-colors #customize-control-freestore-footer-bg-color' ).removeClass( 'hide-section' );
+                $( '#sub-accordion-section-colors #customize-control-freestore-footer-font-color' ).removeClass( 'hide-section' );
             } else if ( footer_selected_value == 'freestore-footer-layout-none' ) {
-                $( '#accordion-section-colors #customize-control-freestore-footer-bg-color' ).addClass( 'hide-section' );
-                $( '#accordion-section-colors #customize-control-freestore-footer-font-color' ).addClass( 'hide-section' );
+                $( '#sub-accordion-section-colors #customize-control-freestore-footer-bg-color' ).addClass( 'hide-section' );
+                $( '#sub-accordion-section-colors #customize-control-freestore-footer-font-color' ).addClass( 'hide-section' );
             } else {
-                $( '#accordion-section-colors #customize-control-freestore-footer-bg-color' ).addClass( 'hide-section' );
-                $( '#accordion-section-colors #customize-control-freestore-footer-font-color' ).removeClass( 'hide-section' );
+                $( '#sub-accordion-section-colors #customize-control-freestore-footer-bg-color' ).addClass( 'hide-section' );
+                $( '#sub-accordion-section-colors #customize-control-freestore-footer-font-color' ).removeClass( 'hide-section' );
             }
         }
         

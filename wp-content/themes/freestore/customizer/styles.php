@@ -15,134 +15,87 @@ if ( ! function_exists( 'customizer_library_freestore_build_styles' ) && class_e
  */
 function customizer_library_freestore_build_styles() {
 	
-	// Body Blocks Background Color
-	$setting = 'freestore-page-styling-color';
+	// Site Logo Max Width
+	$setting = 'freestore-logo-max-width';
 	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
 
 	if ( $mod !== customizer_library_get_default( $setting ) ) {
 
-		$color = sanitize_hex_color( $mod );
+		$logo_max_width = esc_attr( $mod );
 
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-branding a.custom-logo-link'
+			),
+			'declarations' => array(
+				'max-width' => $logo_max_width . 'px'
+			)
+		) );
+	}
+	
+	// Site Container Set Width
+	$setting = 'freestore-set-container-width';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$container_width = esc_attr( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-container,
+				.site-boxed'
+			),
+			'declarations' => array(
+				'max-width' => $container_width . 'px'
+			)
+		) );
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-footer-social'
+			),
+			'declarations' => array(
+				'max-width' => ( $container_width - 60 ) . 'px'
+			)
+		) );
+	}
+	
+	// Set Sidebar Width
+	$setting = 'freestore-set-sidebar-width';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$sidebar_width = esc_attr( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.woocommerce #container,
+				.woocommerce-page #container,
+				.content-area'
+			),
+			'declarations' => array(
+				'width' => ( 100 - $sidebar_width ) . '%'
+			)
+		) );
 		Customizer_Library_Styles()->add( array(
 			'selectors' => array(
 				'body.freestore-page-styling-raised .content-area,
-				body.freestore-page-styling-raised .widget-area'
+				body.freestore-page-styling-raised.woocommerce #container,
+				body.freestore-page-styling-raised.woocommerce-page #container'
 			),
 			'declarations' => array(
-				'background-color' => $color
+				'width' => ( 97 - $sidebar_width ) . '%'
 			)
 		) );
-	}
-	
-	// Top Bar Background Color
-	$setting = 'freestore-topbar-bg-color';
-	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
-
-	if ( $mod !== customizer_library_get_default( $setting ) ) {
-
-		$color = sanitize_hex_color( $mod );
-
 		Customizer_Library_Styles()->add( array(
 			'selectors' => array(
-				'.site-header-topbar'
+				'.widget-area,
+				body.freestore-page-styling-raised .widget-area,
+				body.freestore-page-styling-raised.page-template-template-left-sidebar .widget-area'
 			),
 			'declarations' => array(
-				'background-color' => $color
-			)
-		) );
-	}
-	
-	// Top Bar Font Color
-	$setting = 'freestore-topbar-font-color';
-	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
-
-	if ( $mod !== customizer_library_get_default( $setting ) ) {
-
-		$color = sanitize_hex_color( $mod );
-
-		Customizer_Library_Styles()->add( array(
-			'selectors' => array(
-				'.site-header-topbar'
-			),
-			'declarations' => array(
-				'color' => $color
-			)
-		) );
-	}
-	
-	// Header Background Color
-	$setting = 'freestore-header-bg-color';
-	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
-
-	if ( $mod !== customizer_library_get_default( $setting ) ) {
-
-		$color = sanitize_hex_color( $mod );
-
-		Customizer_Library_Styles()->add( array(
-			'selectors' => array(
-				'.site-header,
-				.search-block,
-				.main-navigation ul ul'
-			),
-			'declarations' => array(
-				'background-color' => $color
-			)
-		) );
-	}
-	
-	// Header Font Color
-	$setting = 'freestore-header-font-color';
-	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
-
-	if ( $mod !== customizer_library_get_default( $setting ) ) {
-
-		$color = sanitize_hex_color( $mod );
-
-		Customizer_Library_Styles()->add( array(
-			'selectors' => array(
-				'.site-header,
-				.main-navigation ul li a,
-				.site-description'
-			),
-			'declarations' => array(
-				'color' => $color
-			)
-		) );
-	}
-	
-	// Footer Background Color
-	$setting = 'freestore-footer-bg-color';
-	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
-
-	if ( $mod !== customizer_library_get_default( $setting ) ) {
-
-		$color = sanitize_hex_color( $mod );
-
-		Customizer_Library_Styles()->add( array(
-			'selectors' => array(
-				'.site-footer-standard'
-			),
-			'declarations' => array(
-				'background-color' => $color
-			)
-		) );
-	}
-	
-	// Footer Font Color
-	$setting = 'freestore-footer-font-color';
-	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
-
-	if ( $mod !== customizer_library_get_default( $setting ) ) {
-
-		$color = sanitize_hex_color( $mod );
-
-		Customizer_Library_Styles()->add( array(
-			'selectors' => array(
-				'.site-footer,
-				.site-footer .widgettitle'
-			),
-			'declarations' => array(
-				'color' => $color
+				'width' => $sidebar_width . '%'
 			)
 		) );
 	}
@@ -180,6 +133,8 @@ function customizer_library_freestore_build_styles() {
                 .woocommerce #review_form #respond .form-submit input,
                 .woocommerce-page #review_form #respond .form-submit input,
                 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover,
+				.woocommerce button.button.alt.disabled,
+				.woocommerce button.button.alt.disabled:hover,
                 .single-product span.onsale,
                 .main-navigation ul ul a:hover,
                 .main-navigation ul ul li:hover,
@@ -208,6 +163,10 @@ function customizer_library_freestore_build_styles() {
 		Customizer_Library_Styles()->add( array(
 			'selectors' => array(
 				'a,
+				.header-social-icon:hover,
+				.footer-social-icon:hover,
+				.site-footer-bottom-bar ul li a:hover,
+				.site-topbar-left ul li a:hover,
 				.content-area .entry-content a,
 				#comments a,
 				.search-btn,
@@ -215,16 +174,31 @@ function customizer_library_freestore_build_styles() {
 				.site-title a,
 				.error-404.not-found .page-header .page-title span,
 				.search-button .fa-search,
+				.main-navigation li a:hover,
+				.main-navigation.freestore-nav-plain .current_page_item > a,
+				.main-navigation.freestore-nav-plain .current-menu-item > a,
+				.main-navigation.freestore-nav-plain .current_page_ancestor > a,
+				.main-navigation.freestore-nav-underline .current_page_item > a,
+				.main-navigation.freestore-nav-underline .current-menu-item > a,
+				.main-navigation.freestore-nav-underline .current_page_ancestor > a,
 				.header-cart-checkout.cart-has-items .fa-shopping-cart'
 			),
 			'declarations' => array(
                 'color' => $color . ''
 			)
 		) );
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.main-navigation.freestore-nav-underline .current_page_item > a,
+				.main-navigation.freestore-nav-underline .current-menu-item > a,
+				.main-navigation.freestore-nav-underline .current_page_ancestor > a'
+			),
+			'declarations' => array(
+                'box-shadow' => '0 -3px 0 ' . $color . ' inset'
+			)
+		) );
 	}
 	
-	
-
 	// Secondary Color
 	$setting = 'freestore-secondary-color';
 	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
@@ -370,6 +344,111 @@ function customizer_library_freestore_build_styles() {
 
 	}
 	
+	// Site Title Font
+	$setting = 'freestore-title-font';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+	$stack = customizer_library_get_font_stack( $mod );
+
+	if ( $mod != customizer_library_get_default( $setting ) ) {
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-title a'
+			),
+			'declarations' => array(
+				'font-family' => $stack
+			)
+		) );
+
+	}
+	// Site Title Font Size
+	$setting = 'freestore-title-font-size';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$title_font_size = esc_attr( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-title'
+			),
+			'declarations' => array(
+				'font-size' => $title_font_size . 'px'
+			)
+		) );
+	}
+	// Site Title Font
+	$setting = 'freestore-tagline-font';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+	$stack = customizer_library_get_font_stack( $mod );
+
+	if ( $mod != customizer_library_get_default( $setting ) ) {
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-description'
+			),
+			'declarations' => array(
+				'font-family' => $stack
+			)
+		) );
+
+	}
+	// Site Title Font Size
+	$setting = 'freestore-tagline-font-size';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$title_font_size = esc_attr( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-description'
+			),
+			'declarations' => array(
+				'font-size' => $title_font_size . 'px'
+			)
+		) );
+	}
+	
+	// Site Logo Padding
+	$setting = 'freestore-logo-padding-top';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$logo_padding_top = esc_attr( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-branding a.custom-logo-link,
+				.site-title'
+			),
+			'declarations' => array(
+				'padding-top' => $logo_padding_top . 'px'
+			)
+		) );
+	}
+	$setting = 'freestore-logo-padding-bottom';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$logo_padding_bottom = esc_attr( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-branding a.custom-logo-link,
+				.site-description'
+			),
+			'declarations' => array(
+				'padding-bottom' => $logo_padding_bottom . 'px'
+			)
+		) );
+	}
+	
 	// Heading Font Color
 	$setting = 'freestore-heading-font-color';
 	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
@@ -383,6 +462,158 @@ function customizer_library_freestore_build_styles() {
 				'h1, h2, h3, h4, h5, h6,
                 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
                 .widget-area .widget-title'
+			),
+			'declarations' => array(
+				'color' => $color
+			)
+		) );
+	}
+	
+	// Site Boxed Background Color
+	$setting = 'freestore-boxed-bg-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-boxed'
+			),
+			'declarations' => array(
+				'background-color' => $color
+			)
+		) );
+	}
+	
+	// Body Blocks Background Color
+	$setting = 'freestore-page-styling-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'body.freestore-page-styling-raised .content-area,
+				body.freestore-page-styling-raised .widget-area,
+				body.freestore-page-styling-raised.woocommerce #container,
+				body.freestore-page-styling-raised.woocommerce-page #container'
+			),
+			'declarations' => array(
+				'background-color' => $color
+			)
+		) );
+	}
+	
+	// Header Background Color
+	$setting = 'freestore-header-bg-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-header,
+				.search-block,
+				.main-navigation ul ul'
+			),
+			'declarations' => array(
+				'background-color' => $color
+			)
+		) );
+	}
+	
+	// Header Font Color
+	$setting = 'freestore-header-font-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-header,
+				.main-navigation ul li a,
+				.site-description'
+			),
+			'declarations' => array(
+				'color' => $color
+			)
+		) );
+	}
+	
+	// Top Bar Background Color
+	$setting = 'freestore-topbar-bg-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-header-topbar'
+			),
+			'declarations' => array(
+				'background-color' => $color
+			)
+		) );
+	}
+	
+	// Top Bar Font Color
+	$setting = 'freestore-topbar-font-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-header-topbar'
+			),
+			'declarations' => array(
+				'color' => $color
+			)
+		) );
+	}
+	
+	// Footer Background Color
+	$setting = 'freestore-footer-bg-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-footer-standard'
+			),
+			'declarations' => array(
+				'background-color' => $color
+			)
+		) );
+	}
+	
+	// Footer Font Color
+	$setting = 'freestore-footer-font-color';
+	$mod = get_theme_mod( $setting, customizer_library_get_default( $setting ) );
+
+	if ( $mod !== customizer_library_get_default( $setting ) ) {
+
+		$color = sanitize_hex_color( $mod );
+
+		Customizer_Library_Styles()->add( array(
+			'selectors' => array(
+				'.site-footer,
+				.site-footer .widgettitle'
 			),
 			'declarations' => array(
 				'color' => $color

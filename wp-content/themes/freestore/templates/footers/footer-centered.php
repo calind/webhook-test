@@ -9,7 +9,7 @@
 	
 </footer>
 
-<?php if ( get_theme_mod( 'freestore-footer-bottombar', false ) == 0 ) : ?>
+<?php if ( get_theme_mod( 'freestore-footer-bottombar' ) == 0 ) : ?>
 	
 	<div class="site-footer-bottom-bar">
 	
@@ -17,7 +17,7 @@
 			
 			<div class="site-footer-bottom-bar-left">
                 
-                <?php echo wp_kses_post( get_theme_mod( 'freestore-website-txt-copy', false ) ) ?>
+                <?php echo wp_kses_post( get_theme_mod( 'freestore-website-txt-copy' ) ) ?>
                 
 			</div>
 	        

@@ -12,6 +12,8 @@ function customizer_freestore_fonts() {
 
 	// Font options
 	$fonts = array(
+		get_theme_mod( 'freestore-title-font', customizer_library_get_default( 'freestore-title-font' ) ),
+		get_theme_mod( 'freestore-tagline-font', customizer_library_get_default( 'freestore-tagline-font' ) ),
 		get_theme_mod( 'freestore-body-font', customizer_library_get_default( 'freestore-body-font' ) ),
 		get_theme_mod( 'freestore-heading-font', customizer_library_get_default( 'freestore-heading-font' ) )
 	);

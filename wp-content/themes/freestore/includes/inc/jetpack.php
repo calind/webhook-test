@@ -22,6 +22,6 @@ add_action( 'after_setup_theme', 'freestore_jetpack_setup' );
 function freestore_infinite_scroll_render() {
 	while ( have_posts() ) {
 		the_post();
-		get_template_part( 'templates/contents/content', get_post_format() );
+		get_template_part( 'templates/contents/content' );
 	}
 } // end function freestore_infinite_scroll_render

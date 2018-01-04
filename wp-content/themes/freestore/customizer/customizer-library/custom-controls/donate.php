@@ -23,11 +23,9 @@ class Customizer_Library_Upsell extends WP_Customize_Control {
 	public function render_content() {
 		?>
 		<div class="kaira-upsell">
-			<div class="kaira-upsell-title">
-				<a href="<?php echo admin_url( 'themes.php?page=freestore_support_page' ); ?>" target="_blank" class="kaira-upsell-btn">
-					<?php echo esc_html( $this->label ); ?>
-				</a>
-			</div>
+			<a href="<?php echo admin_url( 'themes.php?page=freestore_support_page' ); ?>" target="_blank">
+				<?php echo esc_html( $this->description ); ?>
+			</a>
 		</div>
 		<?php
 	}

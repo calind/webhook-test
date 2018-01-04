@@ -38,4 +38,4 @@ global $woocommerce;
 	
 	<?php endif; ?>
 
-	<div class="site-container <?php echo ( ! is_active_sidebar( 'sidebar-1' ) ) ? sanitize_html_class( 'content-no-sidebar' ) : sanitize_html_class( 'content-has-sidebar' ); ?>">
+	<div class="site-container <?php echo ( ! is_active_sidebar( 'sidebar-1' ) ) ? sanitize_html_class( 'content-no-sidebar' ) : sanitize_html_class( 'content-has-sidebar' ); ?> <?php echo ( get_theme_mod( 'freestore-woocommerce-custom-cols' ) ) ? sanitize_html_class( 'freestore-woocommerce-cols-' . get_theme_mod( 'freestore-woocommerce-custom-cols' ) ) : 'freestore-woocommerce-cols-4'; ?> <?php echo ( get_theme_mod( 'freestore-remove-product-border' ) ) ? sanitize_html_class( 'freestore-products-noborder' ) : ''; ?>">

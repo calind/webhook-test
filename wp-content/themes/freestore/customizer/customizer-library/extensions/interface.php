@@ -74,6 +74,7 @@ if ( ! function_exists( 'customizer_library_register' ) ) : /**
 
 					case 'text':
 					case 'url':
+					case 'number':
 					case 'select':
 					case 'radio':
 					case 'checkbox':

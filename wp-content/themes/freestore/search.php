@@ -7,14 +7,12 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area <?php echo ( get_theme_mod( 'freestore-blog-full-width', false ) ) ? sanitize_html_class( 'content-area-full' ) : ''; ?>">
+	<section id="primary" class="content-area <?php echo ( get_theme_mod( 'freestore-blog-search-full-width' ) ) ? sanitize_html_class( 'content-area-full' ) : ''; ?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'freestore' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+			<?php get_template_part( '/templates/titlebar' ); ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -41,7 +39,7 @@ get_header(); ?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
-	<?php if ( get_theme_mod( 'freestore-blog-full-width', false ) ) : ?>
+	<?php if ( get_theme_mod( 'freestore-blog-search-full-width' ) ) : ?>
         <!-- No Sidebar -->
     <?php else : ?>
         <?php get_sidebar(); ?>

@@ -1,14 +1,44 @@
 .freestore-support-link {
-    /* color: #f18500; */
+    color: #f18500;
     font-weight: 400;
     display: block;
 }
 .freestore-support-link:hover {
-    /*color: #E46100;*/
+    color: #E46100;
 }
 #adminmenu .wp-submenu li.current a .freestore-support-link {
-	/*color: #f18500 !important;*/
+	color: #f18500 !important;
     font-weight: 700;
+}
+
+.freestore-admin-notice {
+	
+}
+.freestore-admin-notice p {
+	margin: 0;
+    padding: 20px 10px;
+}
+.freestore-admin-notice a {
+	text-decoration: none;
+	font-weight: 600;
+}
+.freestore-admin-notice a.freestore-admin-notice-close {
+	margin: 0 0 0 10px;
+    padding: 0 0 0 12px;
+    box-shadow: -1px 0 0 rgba(0, 0, 0, 0.18);
+    font-size: 12px;
+    opacity: 0.6;
+    font-weight: 400;
+}
+
+/* ---- Category ID Column ---- */
+.cat_id_note {
+	display: block;
+	font-size: 10px;
+	color: #999;
+}
+.column-cat_id {
+	width: 15%;
 }
 
 .plugins-recommended {

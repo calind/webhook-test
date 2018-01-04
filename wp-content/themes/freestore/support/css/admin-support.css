@@ -86,7 +86,7 @@ h2.support-page-title {
 .support-select-radios label.support-select-radio-custom .support-value-custom-disable {
 	position: absolute;
 	top: 5px;
-	right: 12px;
+	right: 15px;
 	background-color: #F1F1F1;
 	height: 34px;
 	width: 70px;
@@ -140,16 +140,4 @@ a#support-purchase-link em {
 }
 a#support-purchase-link:hover {
 	background-color: #0952A9;
-}
-
-@media only screen and (max-width: 782px) {
-	
-	
-	
-}
-
-@media only screen and (max-width: 620px) {
-	
-	
-	
 }

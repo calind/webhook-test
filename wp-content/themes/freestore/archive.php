@@ -9,17 +9,14 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area <?php echo ( get_theme_mod( 'freestore-blog-full-width', false ) ) ? sanitize_html_class( 'content-area-full' ) : ''; ?>">
+	<div id="primary" class="content-area <?php echo ( get_theme_mod( 'freestore-blog-archive-full-width' ) ) ? sanitize_html_class( 'content-area-full' ) : ''; ?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+			<?php if ( !get_theme_mod( 'freestore-page-titles' ) ) : ?>
+				<?php get_template_part( '/templates/titlebar' ); ?>
+			<?php endif; ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -29,7 +26,7 @@ get_header(); ?>
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
-					get_template_part( 'templates/contents/content', get_post_format() );
+					get_template_part( 'templates/contents/content' );
 				?>
 
 			<?php endwhile; ?>
@@ -45,7 +42,7 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-	<?php if ( get_theme_mod( 'freestore-blog-full-width', false ) ) : ?>
+	<?php if ( get_theme_mod( 'freestore-blog-archive-full-width' ) ) : ?>
         <!-- No Sidebar -->
     <?php else : ?>
         <?php get_sidebar(); ?>

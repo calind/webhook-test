@@ -8,9 +8,9 @@
         
         <div class="support-text">
             
-            <p><?php printf( __( '<a href="%s" target="_blank">FreeStore</a> is a completely free theme.', 'freestore' ) , 'https://kairaweb.com/theme/freestore' ); ?></p>
+            <p><?php printf( __( '<a href="%s" target="_blank">FreeStore</a> is a completely free theme packed with a bunch of settings.', 'freestore' ) , 'https://kairaweb.com/theme/freestore' ); ?></p>
             
-            <p><?php printf( __( '<a href="%s" target="_blank">Let us know</a> what features you\'d like added on.', 'freestore' ) , 'https://kairaweb.com/support-contact/' ); ?></p>
+            <p><?php printf( __( 'We\'d like to keep FreeStore as a free theme, so please support us by donating an amount of your choice and <a href="%s" target="_blank">Let us know</a> what features you\'d like added on.', 'freestore' ) , 'https://kairaweb.com/support-contact/' ); ?></p>
             
             <p><?php printf( __( 'If you would like to support our future theme development then please feel free to donate an amount of your choice. We\'d like to keep building onto FreeStore to make it a great theme for all users and create many different settings and styles and turn it into a power theme.', 'freestore' ) ); ?></p>
                 
@@ -18,7 +18,7 @@
             
             <p><?php printf( __( 'You can select an amount we\'ve provided or enter your own amount below.', 'freestore' ) ); ?></p>
             
-            <p><strong><?php printf( __( 'PayPal still takes a cut so that is why we make the least amount $12', 'freestore' ) ); ?></strong></p>
+            <p><strong><?php printf( __( 'PayPal still takes a cut so that is why we make the least amount $15', 'freestore' ) ); ?></strong></p>
             
         </div>
         
@@ -29,8 +29,8 @@
             <div class="support-select-radios">
                 
                 <label for="support_value_fifteen" class="support-select-radio">
-                    <input type="radio" name="support_amount" id="support_value_fifteen" class="support-radio-input" value="12" />
-                    <span><?php _e( 'Donate $12 <b>(Budget Donation)</b>', 'freestore' ); ?></span>
+                    <input type="radio" name="support_amount" id="support_value_fifteen" class="support-radio-input" value="15" />
+                    <span><?php _e( 'Donate $15 <b>(Budget Donation)</b>', 'freestore' ); ?></span>
                 </label>
                 <div class="clearboth"></div>
                 

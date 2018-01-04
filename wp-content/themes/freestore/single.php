@@ -7,7 +7,7 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area <?php echo ( get_theme_mod( 'freestore-blog-single-full-width' ) ) ? sanitize_html_class( 'content-area-full' ) : ''; ?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -28,7 +28,11 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-	<?php get_sidebar(); ?>
+	<?php if ( get_theme_mod( 'freestore-blog-single-full-width' ) ) : ?>
+        <!-- No Sidebar -->
+    <?php else : ?>
+        <?php get_sidebar(); ?>
+    <?php endif; ?>
 	
 	<div class="clearboth"></div>
 	

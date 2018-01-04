@@ -1,8 +1,8 @@
-<?php if ( get_theme_mod( 'freestore-slider-type', false ) == 'freestore-no-slider' ) : ?>
+<?php if ( get_theme_mod( 'freestore-slider-type' ) == 'freestore-no-slider' ) : ?>
     
     <!-- No Slider -->
 
-<?php elseif ( get_theme_mod( 'freestore-slider-type', false ) == 'freestore-meta-slider' ) : ?>
+<?php elseif ( get_theme_mod( 'freestore-slider-type' ) == 'freestore-meta-slider' ) : ?>
     
     <?php
     $slider_code = '';
@@ -16,7 +16,7 @@
     
     <?php
     $slider_cats = '';
-    if ( get_theme_mod( 'freestore-slider-cats', false ) ) {
+    if ( get_theme_mod( 'freestore-slider-cats' ) ) {
         $slider_cats = get_theme_mod( 'freestore-slider-cats' );
     } ?>
     
@@ -35,32 +35,34 @@
                     <?php while ( $slider_query->have_posts() ) : $slider_query->the_post();
                         $slider_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
                         
-                        <?php if ( get_theme_mod( 'freestore-slider-linkto-post', false ) ) : ?>
+                        <?php if ( get_theme_mod( 'freestore-slider-linkto-post' ) ) : ?>
                         <a class="home-slider-block" href="<?php the_permalink(); ?>"<?php echo ( has_post_thumbnail() ) ? ' style="background-image: url(' . esc_url( $slider_thumbnail['0'] ) . ');"' : ''; ?>>
                         <?php else : ?>
                         <div class="home-slider-block"<?php echo ( has_post_thumbnail() ) ? ' style="background-image: url(' . esc_url( $slider_thumbnail['0'] ) . ');"' : ''; ?>>
                         <?php endif; ?>
                         
-                            <?php if ( get_theme_mod( 'freestore-slider-size', false ) == 'freestore-slider-size-small' ) : ?>
+                            <?php if ( get_theme_mod( 'freestore-slider-size' ) == 'freestore-slider-size-small' ) : ?>
                                 <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_small.gif" />
-                            <?php elseif ( get_theme_mod( 'freestore-slider-size', false ) == 'freestore-slider-size-large' ) : ?>
+                            <?php elseif ( get_theme_mod( 'freestore-slider-size' ) == 'freestore-slider-size-large' ) : ?>
                                 <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_large.gif" />
                             <?php else : ?>
                                 <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_medium.gif" />
                             <?php endif; ?>
                             
-                            <?php if ( !get_theme_mod( 'freestore-slider-remove-title', false ) ) : ?>
-                            
+                            <?php if ( !get_theme_mod( 'freestore-slider-remove-title' ) ) : ?>
                                 <div class="home-slider-block-inner">
                                     <h3>
                                         <?php the_title(); ?>
                                     </h3>
-                                    <p><?php the_content(); ?></p>
+                                    <?php if ( has_excerpt() ) : ?>
+                                        <p><?php the_excerpt(); ?></p>
+                                    <?php else : ?>
+                                        <p><?php the_content(); ?></p>
+                                    <?php endif; ?>
                                 </div>
-                                
                             <?php endif; ?>
                             
-                        <?php if ( get_theme_mod( 'freestore-slider-linkto-post', false ) ) : ?>
+                        <?php if ( get_theme_mod( 'freestore-slider-linkto-post' ) ) : ?>
                         </a>
                         <?php else : ?>
                         </div>
@@ -85,15 +87,15 @@
                 
                 <div class="home-slider-block" style="background-image: url(<?php echo get_template_directory_uri() ?>/images/demo/slider_default_01.jpg);">
                     
-                    <?php if ( get_theme_mod( 'freestore-slider-size', false ) == 'freestore-slider-size-small' ) : ?>
+                    <?php if ( get_theme_mod( 'freestore-slider-size' ) == 'freestore-slider-size-small' ) : ?>
                         <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_small.gif" />
-                    <?php elseif ( get_theme_mod( 'freestore-slider-size', false ) == 'freestore-slider-size-large' ) : ?>
+                    <?php elseif ( get_theme_mod( 'freestore-slider-size' ) == 'freestore-slider-size-large' ) : ?>
                         <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_large.gif" />
                     <?php else : ?>
                         <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_medium.gif" />
                     <?php endif; ?>
                     
-                    <?php if ( !get_theme_mod( 'freestore-slider-remove-title', false ) ) : ?>
+                    <?php if ( !get_theme_mod( 'freestore-slider-remove-title' ) ) : ?>
                         
                         <div class="home-slider-block-inner">
                             <h3>
@@ -108,15 +110,15 @@
                 
                 <div class="home-slider-block" style="background-image: url(<?php echo get_template_directory_uri() ?>/images/demo/slider_default_02.jpg);">
                     
-                    <?php if ( get_theme_mod( 'freestore-slider-size', false ) == 'freestore-slider-size-small' ) : ?>
+                    <?php if ( get_theme_mod( 'freestore-slider-size' ) == 'freestore-slider-size-small' ) : ?>
                         <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_small.gif" />
-                    <?php elseif ( get_theme_mod( 'freestore-slider-size', false ) == 'freestore-slider-size-large' ) : ?>
+                    <?php elseif ( get_theme_mod( 'freestore-slider-size' ) == 'freestore-slider-size-large' ) : ?>
                         <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_large.gif" />
                     <?php else : ?>
                         <img src="<?php echo get_template_directory_uri() ?>/images/slider_blank_img_medium.gif" />
                     <?php endif; ?>
                     
-                    <?php if ( !get_theme_mod( 'freestore-slider-remove-title', false ) ) : ?>
+                    <?php if ( !get_theme_mod( 'freestore-slider-remove-title' ) ) : ?>
                         
                         <div class="home-slider-block-inner">
                             <h3>

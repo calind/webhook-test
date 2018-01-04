@@ -4,7 +4,7 @@
  *
  * @package FreeStore
  */
-define( 'FREESTORE_THEME_VERSION' , '1.1.7' );
+define( 'FREESTORE_THEME_VERSION' , '1.2.1' );
 
 // Load WP included scripts
 require get_template_directory() . '/includes/inc/template-tags.php';
@@ -23,6 +23,8 @@ require get_template_directory() . '/customizer/mods.php';
 
 // Load TGM plugin class
 require_once get_template_directory() . '/includes/inc/class-tgm-plugin-activation.php';
+// Add customizer Upgrade class
+require_once( get_template_directory() . '/includes/freestore-pro/class-customize.php' );
 
 if ( ! function_exists( 'freestore_setup' ) ) :
 /**
@@ -96,10 +98,12 @@ function freestore_setup() {
 	// Set up the WordPress core custom background feature.
 	add_theme_support( 'custom-background', apply_filters( 'freestore_custom_background_args', array(
 		'default-color' => 'F9F9F9',
-		'default-image' => '',
 	) ) );
 	
 	add_theme_support( 'woocommerce' );
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
 }
 endif; // freestore_setup
 add_action( 'after_setup_theme', 'freestore_setup' );
@@ -113,7 +117,6 @@ function freestore_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'freestore' ),
 		'id'            => 'sidebar-1',
-		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -147,25 +150,21 @@ function freestore_scripts() {
 	wp_enqueue_style( 'freestore-body-font-default', '//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic', array(), FREESTORE_THEME_VERSION );
 	wp_enqueue_style( 'freestore-heading-font-default', '//fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic', array(), FREESTORE_THEME_VERSION );
 	
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri().'/includes/font-awesome/css/font-awesome.css', array(), '4.3.0' );
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri().'/includes/font-awesome/css/font-awesome.css', array(), '4.7.0' );
 	
 	wp_enqueue_style( 'freestore-header-style-standard', get_template_directory_uri().'/templates/css/header-standard.css', array(), FREESTORE_THEME_VERSION );
 	
 	wp_enqueue_style( 'freestore-style', get_stylesheet_uri(), array(), FREESTORE_THEME_VERSION );
 	
 	if ( freestore_is_woocommerce_activated() ) :
-		if ( get_theme_mod( 'freestore-woocommerce-layout' ) == 'freestore-woocommerce-layout-centered' ) :
-			wp_enqueue_style( 'freestore-centered-woocommerce-style', get_template_directory_uri().'/templates/css/woocommerce-centered-style.css', array(), FREESTORE_THEME_VERSION );
-		else :
-			wp_enqueue_style( 'freestore-standard-woocommerce-style', get_template_directory_uri().'/templates/css/woocommerce-standard-style.css', array(), FREESTORE_THEME_VERSION );
-		endif;
+		wp_enqueue_style( 'freestore-standard-woocommerce-style', get_template_directory_uri().'/templates/css/woocommerce-standard-style.css', array(), FREESTORE_THEME_VERSION );
 	endif;
 	
-	if ( get_theme_mod( 'freestore-footer-layout', false ) == 'freestore-footer-layout-centered' ) :
+	if ( get_theme_mod( 'freestore-footer-layout' ) == 'freestore-footer-layout-centered' ) :
 	    wp_enqueue_style( 'freestore-footer-centered-style', get_template_directory_uri().'/templates/css/footer-centered.css', array(), FREESTORE_THEME_VERSION );
-	elseif ( get_theme_mod( 'freestore-footer-layout', false ) == 'freestore-footer-layout-standard' ) :
+	elseif ( get_theme_mod( 'freestore-footer-layout' ) == 'freestore-footer-layout-standard' ) :
 	    wp_enqueue_style( 'freestore-footer-standard-style', get_template_directory_uri().'/templates/css/footer-standard.css', array(), FREESTORE_THEME_VERSION );
-	elseif ( get_theme_mod( 'freestore-footer-layout', false ) == 'freestore-footer-layout-none' ) :
+	elseif ( get_theme_mod( 'freestore-footer-layout' ) == 'freestore-footer-layout-none' ) :
 	    wp_enqueue_style( 'freestore-no-footer-style', get_template_directory_uri().'/templates/css/footer-none.css', array(), FREESTORE_THEME_VERSION );
 	else :
 		wp_enqueue_style( 'freestore-footer-social-style', get_template_directory_uri().'/templates/css/footer-social.css', array(), FREESTORE_THEME_VERSION );
@@ -204,11 +203,6 @@ add_action( 'admin_enqueue_scripts', 'freestore_load_admin_script' );
  */
 function freestore_load_customizer_script() {
     wp_enqueue_script( 'freestore-customizer-js', get_template_directory_uri() . '/customizer/customizer-library/js/customizer-custom.js', array('jquery'), FREESTORE_THEME_VERSION, true );
-    $freestore_upgrade_button = array(
-		'link' => admin_url( 'themes.php?page=freestore_support_page' ),
-		'text' => __( 'Support FreeStore Development<span>Help make FreeStore super customizable</span>', 'freestore' )
-	);
-	wp_localize_script( 'freestore-customizer-js', 'upgrade_button', $freestore_upgrade_button );
     wp_enqueue_style( 'freestore-customizer-css', get_template_directory_uri() . '/customizer/customizer-library/css/customizer.css' );
 }
 add_action( 'customize_controls_enqueue_scripts', 'freestore_load_customizer_script' );
@@ -236,6 +230,34 @@ if ( freestore_is_woocommerce_activated() ) {
 	require get_template_directory() . '/includes/inc/woocommerce-header-inc.php';
 }
 
+/*
+ * Override WooCommerce for product # per page
+ */
+function freestore_shop_products_per_page( $freestore_wc_ppp ) {
+	// $cols contains the current number of products per page based on the value stored on Options -> Reading
+	$freestore_wc_ppp = 8;
+	if ( get_theme_mod( 'freestore-woocommerce-products-per-page' ) ) :
+		$freestore_wc_ppp = esc_attr( get_theme_mod( 'freestore-woocommerce-products-per-page' ) );
+	endif;
+	return $freestore_wc_ppp;
+}
+add_filter( 'loop_shop_per_page', 'freestore_shop_products_per_page', 20 );
+
+/*
+ * Override WooCommerce for product # per row
+ */
+if ( !function_exists( 'freestore_loop_columns' ) ) :
+	function freestore_loop_columns() {
+		$freestore_woocommerce_product_cols = 4;
+		if ( get_theme_mod( 'freestore-woocommerce-custom-cols' ) ) :
+			$freestore_woocommerce_product_cols = esc_attr( get_theme_mod( 'freestore-woocommerce-custom-cols' ) );
+		endif;
+		return $freestore_woocommerce_product_cols;
+	}
+
+	add_filter('loop_shop_columns', 'freestore_loop_columns');
+endif;
+
 /**
  * Add classed to the body tag from settings
  */
@@ -247,8 +269,40 @@ function freestore_add_body_class( $classes ) {
 	}
 	$classes[] = $page_style_class;
 	
+	if ( get_theme_mod( 'freestore-blog-left-sidebar' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-blog-left-sidebar' );
+	}
+	if ( get_theme_mod( 'freestore-blog-archive-left-sidebar' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-blog-archives-left-sidebar' );
+	}
+	if ( get_theme_mod( 'freestore-blog-single-left-sidebar' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-blog-single-left-sidebar' );
+	}
+	if ( get_theme_mod( 'freestore-blog-search-left-sidebar' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-blog-search-left-sidebar' );
+	}
+	
+	if ( get_theme_mod( 'freestore-woocommerce-shop-leftsidebar' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-shop-left-sidebar' );
+	}
+	if ( get_theme_mod( 'freestore-woocommerce-shop-archive-leftsidebar' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-shop-archives-left-sidebar' );
+	}
+	if ( get_theme_mod( 'freestore-woocommerce-shop-single-leftsidebar' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-shop-single-left-sidebar' );
+	}
 	if ( get_theme_mod( 'freestore-woocommerce-shop-fullwidth' ) ) {
 		$classes[] = sanitize_html_class( 'freestore-shop-full-width' );
+	}
+	if ( get_theme_mod( 'freestore-woocommerce-shop-archive-fullwidth' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-shop-archives-full-width' );
+	}
+	if ( get_theme_mod( 'freestore-woocommerce-shop-single-fullwidth' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-shop-single-full-width' );
+	}
+	
+	if ( get_theme_mod( 'freestore-page-titles' ) ) {
+		$classes[] = sanitize_html_class( 'freestore-shop-remove-title' );
 	}
 	
 	return $classes;
@@ -299,32 +353,32 @@ function freestore_register_required_plugins() {
 	$plugins = array(
 		// The recommended WordPress.org plugins.
 		array(
-			'name'      => 'Page Builder',
+			'name'      => __( 'Page Builder', 'freestore' ),
 			'slug'      => 'siteorigin-panels',
 			'required'  => false,
 		),
 		array(
-			'name'      => 'woocommerce',
+			'name'      => __( 'woocommerce', 'freestore' ),
 			'slug'      => 'woocommerce',
 			'required'  => false,
 		),
 		array(
-			'name'      => 'Widgets Bundle',
+			'name'      => __( 'Widgets Bundle', 'freestore' ),
 			'slug'      => 'siteorigin-panels',
 			'required'  => false,
 		),
 		array(
-			'name'      => 'Contact Form 7',
+			'name'      => __( 'Contact Form 7', 'freestore' ),
 			'slug'      => 'contact-form-7',
 			'required'  => false,
 		),
 		array(
-			'name'      => 'Breadcrumb NavXT',
+			'name'      => __( 'Breadcrumb NavXT', 'freestore' ),
 			'slug'      => 'breadcrumb-navxt',
 			'required'  => false,
 		),
 		array(
-			'name'      => 'Meta Slider',
+			'name'      => __( 'Meta Slider', 'freestore' ),
 			'slug'      => 'ml-slider',
 			'required'  => false,
 		)
@@ -332,9 +386,87 @@ function freestore_register_required_plugins() {
 	$config = array(
 		'id'           => 'freestore',
 		'menu'         => 'tgmpa-install-plugins',
-		'message'      => '',
 	);
 
 	tgmpa( $plugins, $config );
 }
 add_action( 'tgmpa_register', 'freestore_register_required_plugins' );
+
+/**
+ * Function to remove Category pre-title text
+ */
+function freestore_cat_title_remove_pretext( $freestore_cat_title ) {
+	if ( is_category() ) {
+            $freestore_cat_title = single_cat_title( '', false );
+        } elseif ( is_tag() ) {
+            $freestore_cat_title = single_tag_title( '', false );
+        } elseif ( is_author() ) {
+            $freestore_cat_title = '<span class="vcard">' . get_the_author() . '</span>' ;
+        }
+    return $freestore_cat_title;
+}
+if ( get_theme_mod( 'freestore-remove-cat-pre-title' ) ) :
+	add_filter( 'get_the_archive_title', 'freestore_cat_title_remove_pretext' );
+endif;
+
+/**
+ * Register a custom Post Categories ID column
+ */
+function freestore_edit_cat_columns( $freestore_cat_columns ) {
+    $freestore_cat_in = array( 'cat_id' => 'Category ID <span class="cat_id_note">For the Default Slider</span>' );
+    $freestore_cat_columns = freestore_cat_columns_array_push_after( $freestore_cat_columns, $freestore_cat_in, 0 );
+    return $freestore_cat_columns;
+}
+add_filter( 'manage_edit-category_columns', 'freestore_edit_cat_columns' );
+
+/**
+ * Print the ID column
+ */
+function freestore_cat_custom_columns( $value, $name, $cat_id ) {
+    if ( 'cat_id' == $name ) 
+        echo $cat_id;
+}
+add_filter( 'manage_category_custom_column', 'freestore_cat_custom_columns', 10, 3 );
+
+/**
+ * Insert an element at the beggining of the array
+ */
+function freestore_cat_columns_array_push_after( $src, $freestore_cat_in, $pos ) {
+    if ( is_int( $pos ) ) {
+        $R = array_merge( array_slice( $src, 0, $pos + 1 ), $freestore_cat_in, array_slice( $src, $pos + 1 ) );
+    } else {
+        foreach ( $src as $k => $v ) {
+            $R[$k] = $v;
+            if ( $k == $pos )
+                $R = array_merge( $R, $freestore_cat_in );
+        }
+    }
+    return $R;
+}
+
+/**
+ * Add donation dismissable notice in admin
+ */
+function freestore_donation_dismissable_notice() {
+    global $current_user;
+    $user_id = $current_user->ID;
+    
+    if ( ! get_user_meta( $user_id, 'freestore_donation_ignore_notice' ) ) { ?>
+        <div class="notice notice-info freestore-admin-notice is-dismissible">
+			<p><?php printf( __( 'Please consider <a href="http://kaira.fetchapp.com/sell/a9380c28?amount=" target="_blank">donating any amount of your choice to FreeStore</a> to help us keep developing on it and keep it as a FREE premium theme. <a href="?freestore_donation_nag_ignore=0" class="freestore-admin-notice-close">Dismiss Notice</a>', 'freestore' ) ); ?></p>
+		</div>
+	<?php
+    }
+}
+add_action( 'admin_notices', 'freestore_donation_dismissable_notice' );
+
+function freestore_donation_nag_ignore() {
+    global $current_user;
+    $user_id = $current_user->ID;
+        
+    /* If user clicks to ignore the notice, add that to their user meta */
+    if ( isset( $_GET['freestore_donation_nag_ignore'] ) && '0' == $_GET['freestore_donation_nag_ignore'] ) {
+        add_user_meta( $user_id, 'freestore_donation_ignore_notice', 'true', true );
+    }
+}
+add_action( 'admin_init', 'freestore_donation_nag_ignore' );
