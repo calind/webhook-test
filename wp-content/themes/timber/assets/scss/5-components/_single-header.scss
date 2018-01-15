@@ -1,0 +1,138 @@
+// Styling for Single Post header and Single page header
+
+.single-post, .page {
+	.entry-title {
+		margin-top: 0;
+		margin-bottom: 20px;
+
+		-ms-word-wrap: break-word;
+		word-wrap: break-word;
+	}
+}
+
+// .single-post, .page
+.entry-header {
+	text-align: center;
+
+	body:not(.page) & {
+		@extend %single-width;
+	}
+
+	body.single-format-gallery & {
+		max-width: none !important;
+
+		.entry-title {
+			@extend %single-width;
+		}
+	}
+
+	.entry-meta {
+		font-size: 15px;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	.single-format-gallery & {
+		max-width: none;
+	}
+}
+
+	.entry-featured.entry-gallery {
+
+		.tiled-gallery, .gallery {
+			margin: 30px 0;
+		}
+
+		.gallery {
+			margin-left: -5px;
+		}
+			.gallery-item {
+				padding-left: 5px;
+				vertical-align: middle;
+
+				@include query-below($small) {
+					vertical-align: top;
+				}
+
+				img {
+					width: 100%;
+				}
+			}
+	}
+
+// to be used on single page as
+//.entry-header.cover
+.cover {
+	display: block;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.cover-container {
+	display: table;
+	width: 100%;
+
+	@include query-above($small) {
+		padding: 0 50px;
+	}
+
+	.full-height & {
+		height: 100vh;
+		min-height: 100vh;
+	}
+
+	.half-height & {
+		height: 50vh;
+		min-height: 50vh;
+	}
+
+	.two-thirds-height & {
+		height: 66.666666vh;
+		min-height: 66.666666vh;
+	}
+
+	> .entry-title {
+		display: table-cell;
+		vertical-align: middle;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+.page-template-default.page-has-featured-image h1.entry-title {
+	color: white;
+}
+
+.page-no-featured-image {
+	.entry-title {
+		color: black;
+	}
+
+}
+
+.page-no-featured-image:not(.page-template-fullwidth-page) .entry-header {
+	@extend %single-width;
+}
+
+.page-template-default.page-has-featured-image .site-header--placeholder {
+	display: none;
+}
+
+//Fullwidth page template
+
+.page-template-fullwidth-page {
+	.entry-title {
+		margin-bottom: 20px;
+		padding-top: 0;
+
+		text-align: left;
+	}
+}
+
+.not-found .page-title {
+	margin-top: 0;
+	// padding-top: $header-height;
+}

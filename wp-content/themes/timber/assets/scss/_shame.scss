@@ -1,0 +1,295 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body, #page, .site, #djaxContainer {
+    height: 100%;
+
+    // .page & {
+    //     height: auto;
+    // }
+}
+
+@include query-below($lap) {
+    body.single-product {
+        &, .site, #djaxContainer {
+            height: auto;
+        }
+
+        .site-footer--single {
+            display: block;
+        }
+    }
+}
+
+[class*="is--ie"] {
+    body.page-template-default {
+        height: auto !important;
+    }
+}
+
+#djaxContainer {
+
+    .portfolio_page_type-project_slider & {
+        position: relative;
+        overflow: hidden;
+    }
+
+    // @include query-below($small) {
+    //     position: relative;
+    //     overflow-x: hidden;
+    // }
+}
+
+html.has--nicescroll {
+    overflow: hidden;
+}
+
+.portfolio_page_type-project_slider {
+    overflow-x: hidden;
+}
+
+.slider_height-full-height {
+
+    .nav-toggle,
+    .mobile-header a,
+    .toggle {
+        color: white;
+    }
+
+}
+
+.entry-meta + .entry-featured {
+    margin-top: 1.5em;
+}
+
+.block-link {
+    @extend %display--block;
+}
+
+.show-details {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    &:before {
+        color: $headingColour;
+        content: "\2014";
+        padding: 0 .5em;
+        position: relative;
+        top: -1px;
+    }
+
+    .portfolio--details & span {
+        text-decoration: underline;
+    }
+}
+
+.show-details,
+.show-button {
+    line-height: initial;
+}
+
+.show-button.caption {
+    padding-top: 0;
+}
+
+.photometa__caption {
+    text-align: left;
+}
+
+.show-details:hover span,
+.show-button:hover {
+    text-decoration: underline;
+}
+
+// WP DEBUGGER
+#querylist * {
+    text-shadow: none !important;
+}
+
+#page, .site-header, .site-footer {
+    opacity: 0;
+}
+
+.navigation--is-visible {
+    overflow: hidden;
+}
+
+.lang_sel_sel {
+    transition-duration: 0s;
+}
+
+.page-template-custom-portfolio-page .site-footer--single {
+    display: none;
+}
+
+.single-jetpack-portfolio .site,
+.jetpack-portfolio .site,
+.single-proof_gallery .site,
+.woocommerce:not(.single) .site {
+    @extend %display--flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+
+.touch {
+    .single-jetpack-portfolio,
+    .single-proof_gallery,
+    .archive.woocommerce {
+        .site-content {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    }
+
+    .blog {
+        @include query-above($lap) {
+            .site-content {
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+        }
+    }
+}
+html {
+    margin-top: 0 !important;
+}
+
+.portfolio__position,
+.show-details:before {
+    @include query-below($lap) {
+        display: none;
+    }
+}
+
+.portfolio-archive {
+    @include query-below($small) {
+        padding-left: 0.5em;
+    }
+}
+
+.no-flexbox {
+    @include query-below($lap) {
+        .site-branding {
+            display: none;
+        }
+
+        .site-navigation {
+            text-align: left;
+        }
+
+        .site-navigation,
+        .social-navigation {
+            display: block;
+        }
+
+        .site-header {
+            display: block;
+            width: 70%;
+
+            .bar--fixed {
+                top: 0;
+            }
+        }
+    }
+
+    .filmstrip,
+    .single-jetpack-portfolio .site,
+    .jetpack-portfolio .site {
+        display: block;
+
+        .site-content {
+            height: 80vh;
+            height: calc(100vh - 120px);
+        }
+    }
+}
+
+.single-proof_gallery {
+    @extend .single-jetpack-portfolio;
+}
+
+p.caption {
+    line-height: 1.5;
+    padding: 0;
+    // margin: 0;
+    // e un margin-bottom 0 !important pe caption pe undeva
+    // margin-bottom: 2.25em !important;
+    margin-top: 0;
+    font-size: 14px;
+
+    &:first-child {
+        margin-top: 1.75em;
+
+        .twocolumn > & {
+            margin-top: 0;
+        }
+    }
+
+    p + & {
+        margin-top: 3em;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        background: none;
+
+        .pixcode--icon {
+            color: inherit;
+            transition: none;
+        }
+
+        &:hover {
+            color: $bodyColour;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    + p.caption {
+        margin-top: 0.5em;
+        margin-bottom: 1.5em !important;
+    }
+}
+
+.caption.caption--small {
+    font-size: 12px;
+    text-shadow: none;
+}
+
+.entry-content hr {
+    opacity: 0.35;
+}
+
+.is--ie {
+    .portfolio__position,
+    .show-details:before {
+        display: none;
+    }
+}
+
+html body .jp-carousel .selected {
+    position: absolute !important;
+}
+
+@keyframes rotate {
+    0%      { transform: rotate(180deg) }
+    100%    { transform: rotate(-180deg) }
+}
+
+@include query-above($lap) {
+    // Place nicescroll rails above body border;
+    // !important to override inline styles.
+    .nicescroll-rails {
+        bottom: 0.9vh !important;
+    }
+}
+
+.u-cursor-default {
+    cursor: default !important;
+}

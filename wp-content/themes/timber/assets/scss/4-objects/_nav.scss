@@ -1,0 +1,66 @@
+.nav,
+.sub-menu,
+.menu-item {
+    @extend %box--0;
+}
+
+.nav {
+    @extend %display--flex;
+
+    &, ul {
+        list-style-type: none;
+    }
+
+    // general styling of links inside menu
+    a {
+        @extend %background--none;
+
+        &:hover {
+            @extend %background--none;
+        }
+    }
+
+    // general styling of menu items
+    .menu-item {
+        > a {
+
+        }
+    }
+
+    // styling of current menu items
+    [class*="current-menu-"] {
+        > a {
+
+        }
+    }
+
+    // styling sub-menus
+    .menu-item-has-children, .menu-item-language {
+        @extend %position--relative;
+
+        > a:after {
+
+        }
+    }
+
+    @include query-above($lap) {
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+        }
+    }
+
+    .menu-item:hover > .sub-menu {
+        @extend %display--block;
+    }
+
+    .sub-menu .menu-item-has-children > a:after {
+
+    }
+
+    .sub-menu .sub-menu {
+        top: 0;
+        left: 100%;
+    }
+}

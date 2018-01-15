@@ -1,0 +1,43 @@
+@include query-above($lap) {
+
+    .site-header--placeholder {
+        margin-top: 0.9vh;
+    }
+
+    html[lang] {
+        margin-top: 0 !important;
+    }
+
+    body {
+
+        &.admin-bar {
+            padding-top: 0;
+
+            &:after {
+                border-top-width: 0;
+            }
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9990;
+            width: 100%;
+            bottom: 0;
+            pointer-events: none;
+            border: 0 solid $bodyColour;
+            transition: border-width .3s ease-out;
+
+            .admin-bar & {
+                border-top: 0;
+            }
+        }
+
+        .ready &:after {
+            border-width: 0.9vh;
+        }
+    }
+}

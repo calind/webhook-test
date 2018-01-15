@@ -1,0 +1,140 @@
+.screen-reader-text,
+.site-description {
+    @extend %display--none;
+}
+
+.site-header {
+    @extend %bar;
+    z-index: 552;
+
+    @include query-above($lap) {
+        &.site-header {
+            top: 7px;
+        }
+    }
+
+    .page & {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+
+    .page-template-portfolio-page & {
+        position: static;
+        left: auto;
+        right: auto;
+    }
+}
+
+.site-header.site-header--placeholder {
+    position: static !important;
+    z-index: 0;
+    height: $small-bar-height;
+
+    @include query-above($lap) {
+        display: block;
+        height: $header-height*2/3 !important;
+    }
+
+    @include query-above($large) {
+        height: $header-height !important;
+    }
+}
+
+.site-header--placeholder {
+    @include wp-offset(0px, margin-top);
+}
+
+.site-branding {
+    @extend %bar-piece;
+    @extend %bar-side;
+    @extend %bar-left;
+}
+
+.main-navigation {
+    @extend %bar-piece;
+    @extend %bar-middle;
+
+    // .page & {
+    //     .sub-menu {
+    //         background: transparent;
+    //     }
+
+    //     a {
+    //         text-shadow: none;
+    //     }
+    // }
+}
+
+.social-navigation {
+    @extend %bar-piece;
+    @extend %bar-side;
+    @extend %bar-right;
+    font-size: 16px;
+
+    .is--ie-le10 & {
+        white-space: nowrap;
+    }
+}
+
+.toggle {
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+    flex-basis: 1.25em;
+    -webkit-flex-basis: 1.25em;
+    padding: 0 0 0 .5em;
+    height: 2.1em;
+
+    // for safari
+    svg {
+        width: 100%;
+    }
+
+    svg rect {
+        color: currentColor;
+    }
+
+    @include query-below($lap) {
+        display: none;
+    }
+
+    .is--ie-le10 & {
+        display: inline-block;
+        width: 22px;
+    }
+}
+
+.toggle--mobile {
+    display: none;
+    z-index: 999;
+    transition: opacity .2s ease-out;
+
+    .navigation--is-visible .mobile-header & {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    @include query-below($lap) {
+        display: block;
+        width: 1em;
+        height: 1em;
+        position: absolute;
+        top: 21px;
+        right: 1em;
+        padding: 0;
+        overflow: hidden;
+
+        svg {
+            display: block;
+        }
+    }
+
+    .is--ie-le10 & {
+        display: none;
+    }
+}
+
+.custom-logo-link img {
+    width: auto;
+}

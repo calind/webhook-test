@@ -1,0 +1,292 @@
+%current-item {
+    position: relative;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        transform: translateY(50%);
+        background-image: url('assets/svg/divider.svg');
+        background-repeat: repeat-x;
+        background-position: top center;
+        opacity: 0.25;
+    }
+}
+
+.nav--main {
+    @extend %font-weight--bold;
+    text-transform: uppercase;
+
+    // general styling of links inside menu
+    a {
+        @extend %display--inline-block;
+        padding: 0.5em;
+        font-size: 18px;
+        line-height: 1.7;
+        background: none !important;
+    }
+
+    [class*="current-menu-"] > a {
+        @extend %current-item;
+    }
+
+    @include query-above($lap) {
+
+        a {
+            font-size: 15px;
+            line-height: 1.8;
+            padding: .25em 0;
+        }
+
+        > .menu-item {
+            > a {
+                padding-left: 0.75em;
+                padding-right: 0.75em;
+            }
+        }
+
+        // styling of current menu items
+        [class*="current-menu-"] > a:before {
+            left: 0.75em;
+            right: 0.75em;
+        }
+
+        [class*="current-menu-"] [class*="current-menu-"] > a:before {
+            left: 0;
+            right: 0;
+        }
+
+        // styling sub-menus
+        .menu-item-has-children, .menu-item-language-current {
+            z-index: 999;
+
+            > a:after {
+                display: none;
+                content: "+";
+                margin-left: .5em;
+            }
+
+            > a:before {
+                // right: 2.2em;
+            }
+        }
+
+        .sub-menu {
+            display: block;
+            opacity: 0;
+            margin-top: 3px;
+            pointer-events: none;
+            border-radius: 4px;
+            text-align: left;
+            text-transform: none;
+            font-size: 15px;
+            line-height: 1.5;
+
+            .is--ie-le10 & {
+                transform: none !important;
+                left: 0;
+                pointer-events: auto !important;
+            }
+
+            left: 50%;
+            transform: translate(-50%, .5em);
+            background: black;
+
+            min-width: 12em;
+            padding: 0.75em 1.25em;
+            opacity: 0;
+            pointer-events: none;
+            will-change: transform, opacity;
+            transition: opacity .2s ease-out, transform .2s ease-out;
+            transform-origin: 0 0;
+
+            a {
+                color: #dfdfdf;
+                text-shadow: none;
+            }
+
+            &:before {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 100%;
+                left: 0;
+                width: 100%;
+                height: 10px;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                bottom: 100%;
+                border: 10px solid transparent;
+                border-top: 0;
+                border-bottom-color: black;
+                margin-left: -10px;
+
+                .is--ie-le10 & {
+                    left: 12px;
+                    margin-bottom: -2px;
+                }
+            }
+
+            .menu-item:hover > a {
+                color: white;
+            }
+        }
+
+        .no-touch & .menu-item:hover > .sub-menu,
+        .touch & .menu-item.hover > .sub-menu {
+            transform: translate(-50%, 0);
+            opacity: 1;
+            pointer-events: auto;
+            transition: opacity .1s ease-out, transform .1s ease-out;
+        }
+
+        .sub-menu .sub-menu {
+            transform: translate(0, .5em);
+            margin-top: -.75em;
+
+            &:after {
+                display: none;
+            }
+        }
+
+        .sub-menu .menu-item:hover > .sub-menu {
+            transform: none;
+        }
+    }
+
+    .is--ie-le10 & li {
+        display: inline-block;
+    }
+}
+
+.is--ie-le10 {
+    .menu-main-menu-container {
+        margin: 0 auto;
+
+        .nav--main {
+            display: block;
+            width: 100%;
+        }
+
+        li {
+            display: inline-block;
+        }
+    }
+}
+
+.site-header {
+    @include wp-offset(0, top, true);
+}
+
+@include query-below($lap) {
+
+    .nav--main [class*="current-menu-"] > a:before, .filter__item.active:before {
+        left: 0.5em;
+        right: 0.5em;
+        bottom: 0.5em;
+        display: none;
+    }
+
+    .nav--main .current-menu-item > a:before, .filter__item.active:before {
+        display: block;
+    }
+
+    .main-navigation {
+        display: block;
+        text-align: left;
+    }
+
+    .bar--fixed {
+        position: static !important;
+        width: 100%;
+    }
+
+    .nav--main .sub-menu {
+        padding-left: 1.5em;
+    }
+
+    .site-header {
+        width: auto !important;
+        height: auto;
+        position: fixed !important;
+        z-index: 9999;
+        left: 0;
+        right: 4em !important;
+        bottom: 0;
+        background: white;
+        transform: translate(-100%, 0);
+        box-shadow: rgba(0,0,0,0) 0 0 0;
+        transition: transform .3s cubic-bezier(0.165, 0.840, 0.440, 1.000), box-shadow .3s ease-in-out; /* easeOutQuart */
+
+        .navigation--is-visible & {
+            box-shadow: rgba(black, 0.5) 0 0 10px;
+        }
+
+        .bar--fixed {
+            display: block !important;
+            transform: none !important;
+            overflow-y: auto;
+            padding: 0.5em 1em;
+        }
+
+        .navigation--is-visible &:not(.site-header--placeholder) {
+            transform: translateZ(0);
+            // above navigation-overlay
+            // nasty but big z-indexes
+            // are all over this theme
+            z-index: 10001;
+        }
+    }
+
+    .site-header--placeholder {
+        box-shadow: none !important;
+    }
+
+    .nav--main {
+        display: block;
+    }
+}
+
+.nav-toggle {
+    position: absolute;
+    top: 16px;
+    left: 100%;
+    margin-left: 0.8em;
+    font-size: 1.5em;
+
+    @include query-above($lap) {
+        display: none;
+    }
+}
+
+.navigation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // nasty but big z-indexes
+    // are all over this theme
+    z-index: 10000;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #FFFFFF;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: .3s opacity ease-in-out;
+
+    .navigation--is-visible & {
+        opacity: .3;
+        pointer-events: auto;
+    }
+}

@@ -1,0 +1,109 @@
+.photometa {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+    align-items: flex-start;
+    -webkit-align-items: flex-start;
+    align-content: flex-start;
+    -webkit-align-content: flex-start;
+    padding: 10em 1.5em 1em;
+    color: white;
+    @extend %transform--0;
+    transition: opacity .3s ease-in-out;
+    -webkit-font-smoothing: initial;
+    z-index: 2000;
+    pointer-events: none;
+
+    .hide-meta.hide-meta & {
+        opacity: 0 !important;
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(-180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.30) 100%);
+    }
+
+    &__caption,
+    &__description,
+    &__exif {
+        @extend %position--relative;
+        transition: opacity .3s ease-in-out;
+        flex-grow: 0;
+        -webkit-flex-grow: 0;
+    }
+
+    &__description,
+    &__exif {
+        opacity: 0;
+
+        .portfolio--details .portfolio__item--active & {
+            opacity: 1;
+        }
+
+        .touch .portfolio--details & {
+            @include query-below($lap) {
+                opacity: 1;
+            }
+        }
+    }
+
+    .portfolio--details &.no-caption {
+        opacity: 0 !important;
+    }
+
+    .portfolio--details &,
+    .portfolio--details .portfolio__item--active & {
+        opacity: 1 !important;
+    }
+
+    &__description {
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.65em;
+        margin-bottom: 1em;
+
+        > div {
+            max-width: 40em;
+        }
+    }
+
+    &__exif,
+    &__caption {
+        font-size: 12px;
+    }
+
+
+    &__caption {
+        flex-grow: 1;
+        -webkit-flex-grow: 1;
+        margin-top: .5em;
+        margin-right: 1em;
+        opacity: 0.5;
+        line-height: 1.3em;
+        padding-bottom: 0.5em;
+
+        .portfolio__item--active & {
+            opacity: 1;
+        }
+    }
+
+    .portfolio--grid & {
+        padding: 0em 0.6em 0.1em;
+    }
+}
+
+.portfolio--grid {
+    .photometa:before,
+    .photometa__exif,
+    .photometa__description {
+        display: none;
+        min-height: 0;
+    }
+}

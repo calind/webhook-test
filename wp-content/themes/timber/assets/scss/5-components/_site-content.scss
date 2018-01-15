@@ -1,0 +1,56 @@
+.site-content {
+    @extend %position--relative;
+    z-index: 500;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    -webkit-overflow-scrolling: touch;
+
+    &__mask {
+        @extend %transform--0;
+        position: fixed;
+        z-index: 300;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: white;
+        overflow: hidden;
+        will-change: opacity, transform;
+        pointer-events: none;
+
+        &.mask--page {
+            z-index: 551;
+        }
+
+        &.mask--project {
+            // left: 0 !important;
+        }
+
+        &.is-on-top {
+            z-index: 9000;
+        }
+    }
+
+    &.portfolio-archive {
+        z-index: 200;
+        width: 100%;
+    }
+}
+
+.page-template-featured-projects-page .site-content__mask {
+    transform: none;
+    transform-origin: 100% 0;
+
+    .portfolio_types,
+    .project-slide__text {
+        // transition: opacity .3s ease-in
+    }
+
+    .project-slide__title {
+
+    }
+
+    .project-slide__text {
+
+    }
+}

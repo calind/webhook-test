@@ -1,0 +1,129 @@
+.widget {
+	font-size: 14px;
+	color: #ABABAB;
+	margin-bottom: 36px;
+
+	ul {
+		list-style-type: none;
+		padding-top: 0;
+		margin-bottom: 0;
+
+		li {
+			line-height: 1;
+			margin-bottom: 12px;
+			margin-left: 0;
+		}
+	}
+
+	&.dashed {
+		li:before {
+			content: "\2013";
+			margin-right: 3px;
+		}
+	}
+
+	.widget-title, a {
+		color: white;
+	}
+
+	a, a:hover {
+		background: none;
+	}
+
+	p {
+		line-height: 1.6;
+	}
+
+	.search-form {
+		border: 0;
+	}
+}
+
+	.widget-title {
+		padding: 0;
+		margin-bottom: 12px;
+		line-height: 1;
+		font-weight: 800;
+	}
+
+.widget_timber_image {}
+
+	@include query-above($small) {
+		.timber-widget-background-image {
+			display: none;
+
+			.overlay__col.col1 & {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+
+				display: initial;
+
+				[class*="is--ie"] & {
+					display: block;
+				}
+
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+		}
+
+		.timber-widget-image {
+			max-width: 100%;
+			height: auto;
+			margin: 0 auto;
+
+			display: block;
+
+			.overlay__col.col1 & {
+				display: none;
+			}
+		}
+	}
+
+
+/* Widget - RSS */
+
+.widget_rss{
+
+	cite{
+		display: block;
+		margin-top: 6px;
+	}
+}
+
+.rsswidget { //rss entry title
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.rss-date{
+	&:before{
+		content: '-';
+
+		display: inline-block;
+		margin: 0 3px;
+	}
+}
+
+.widget_rss_links a{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.overlay__col .nav--social .menu-item {
+	display: inline-block;
+	height: 1.1em;
+
+	a {
+		color: #ABABAB;
+
+		&:hover {
+			color: white;
+		}
+	}
+}

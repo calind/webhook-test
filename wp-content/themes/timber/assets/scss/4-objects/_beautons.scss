@@ -1,0 +1,32 @@
+///*------------------------------------*\
+//    $BUTTONS
+//\*------------------------------------*/
+
+.btn {
+	padding: 4px 30px;
+
+	font-family: unquote(map-get($bodytype, font-family));
+	font-weight: map-get($bodytype, bold);
+	font-size: 14px;
+	text-transform: uppercase;
+	text-shadow: none;
+
+	border: 1px solid black;
+	border-radius: 0;
+	background-color: black;
+	background-image: none;
+	color: white;
+	transition: all .15s;
+
+	cursor: pointer;
+
+	&:hover, &:active, &:focus {
+		background-color: white;
+		background-image: none;
+		color: black;
+	}
+
+	&.a{
+		border-bottom: none;
+	}
+}

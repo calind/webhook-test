@@ -1,0 +1,73 @@
+%single-width {
+	max-width: $single-width;
+	margin-left: auto;
+	margin-right: auto;
+
+	@include query-below($small) {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+}
+
+.single-post, .page-template-default, .attachment {
+	.entry-content, .entry-footer, .post-navigation {
+		@extend %single-width;
+	}
+
+	.entry-content {
+		padding-top: 30px;
+		margin-bottom: 30px;
+	}
+}
+
+.not-found {
+	@extend %single-width;
+
+	text-align: center;
+}
+
+.entry-content {
+	@extend %clearfix;
+
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
+
+// Post pagination
+.page-links {
+	text-align: center;
+
+	span, a {
+		padding: 8px 12px;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+}
+
+// Password protection form
+.post-password-form p:last-child {
+	position: relative;
+
+	[name="post_password"] {
+		padding-right: 40px;
+	}
+
+	[type="submit"] {
+		position: absolute;
+		right: 4px;
+		bottom: 4px;
+	}
+}
+
+//Fullwidth page template
+.page-template-fullwidth-page .site-main {
+	padding-left: 30px;
+	padding-right: 30px;
+
+	@include query-above($lap) {
+		padding-left: 130px;
+		padding-right: 32px;
+	}
+}

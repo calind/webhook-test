@@ -1,0 +1,149 @@
+.overlay {
+	position: fixed;
+	bottom: 0;
+	left: 100%;
+	z-index: 10000;
+
+	width: 100%;
+	height: 100vh;
+
+	opacity: 0;
+	background: #222222;
+	color: white;
+
+	transform: translateZ(0);
+
+	-webkit-overflow-scrolling: touch;
+
+	&.is--scrollable {
+		overflow-y: scroll;
+	}
+
+	* {
+		text-shadow: none;
+	}
+
+	@include wp-offset();
+
+	@include query-below($small) {
+		padding: 70px 30px;
+		overflow-y: auto;
+	}
+}
+
+.overlay__wrapper {
+}
+
+@include query-above($small) {
+
+	.overlay__wrapper {
+		// @todo better when widget areas are added to the navigation overlay
+		width: 100%;
+		padding: 150px 70px 110px 110px;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-start;
+		align-content: flex-start;
+
+		.is--IE & {
+			min-height: 0 !important;
+		}
+	}
+		.overlay__col {
+			flex: 1 1 auto;
+			overflow-y: scroll;
+			-ms-overflow-style: scrollbar;
+
+			.is--ie-le10 & {
+				display: inline-block;
+				width: 49%;
+				vertical-align: top;
+			}
+
+			.is--scrollable & {
+				overflow-y: auto;
+			}
+
+			&.col1 {
+				position: relative;
+
+				flex-shrink: 1;
+				height: calc(100vh - 260px);
+				padding: 0 40px;
+
+				.widget {
+					max-width: 560px;
+				}
+			}
+
+			&.col1.has--widget-profile-image {
+				overflow: hidden;
+			}
+
+			&.col2 {
+				height: calc(100vh - 250px);
+
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: flex-start;
+				align-content: flex-start;
+				flex-shrink: 1;
+
+				margin-bottom: 100px;
+			}
+
+			&.col1 + &.col2 {
+				flex: 0 0 50vw;
+
+				padding-left: 40px;
+
+				.sub-col {
+					flex-basis: 360px;
+				}
+			}
+		}
+
+				.sub-col {
+					flex: 0 1 50%;
+
+					padding: 0 40px;
+				}
+}
+
+@include query-above($desk) {
+	.overlay__col {
+		&.col1 + &.col2 {
+			flex: 0 0 760px;
+		}
+	}
+}
+
+
+.overlay,
+.overlay__wrapper {
+
+	.is--IE & {
+		display: block !important;
+		width: 100%;
+	}
+}
+
+.overlay__close {
+	width: 1.5em;
+	height: 1.5em;
+	position: absolute;
+	cursor: pointer;
+	z-index: 10;
+	background: url('assets/svg/close-button.svg') no-repeat;
+	background-size: cover;
+	top: 1em;
+	right: 1em;
+
+	@include query-above($desk) {
+		top: 62px;
+		right: 42px;
+	}
+}
