@@ -21,3 +21,6 @@ wp-content/plugins/special-recent-posts/cache/
 
 # Fast Secure Contact Form captcha cache
 wp-content/plugins/si-contact-form/captcha/cache/
+
+wp-content/object-cache.php
+wp-content/db.php
