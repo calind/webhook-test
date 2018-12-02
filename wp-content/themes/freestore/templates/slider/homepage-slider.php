@@ -10,7 +10,7 @@
         $slider_code = get_theme_mod( 'freestore-meta-slider-shortcode' );
     } ?>
     
-    <?php echo ( $slider_code ) ? do_shortcode( esc_html( $slider_code ) ) : ''; ?>
+    <?php echo ( $slider_code ) ? do_shortcode( sanitize_text_field( $slider_code ) ) : ''; ?>
     
 <?php else : ?>
     
@@ -82,6 +82,10 @@
         <div class="home-slider-wrap home-slider-remove" data-auto="<?php echo ( get_theme_mod( 'freestore-slider-auto-scroll' ) ) ? 'false' : '6500'; ?>">
             <div class="home-slider-prev"><i class="fa fa-angle-left"></i></div>
             <div class="home-slider-next"><i class="fa fa-angle-right"></i></div>
+
+            <div class="home-slider-wrap-hint">
+                <?php _e( 'See how to', 'freestore' ); ?> <a href="https://kairaweb.com/documentation/setting-up-the-default-slider/" target="_blank"><?php _e( 'Add your own slides here', 'freestore' ); ?></a>
+            </div>
                 
             <div class="home-slider">
                 

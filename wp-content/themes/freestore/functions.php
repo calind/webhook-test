@@ -4,7 +4,7 @@
  *
  * @package FreeStore
  */
-define( 'FREESTORE_THEME_VERSION' , '1.2.1' );
+define( 'FREESTORE_THEME_VERSION' , '1.2.2' );
 
 // Load WP included scripts
 require get_template_directory() . '/includes/inc/template-tags.php';
@@ -62,7 +62,7 @@ function freestore_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
-
+	
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
@@ -353,23 +353,13 @@ function freestore_register_required_plugins() {
 	$plugins = array(
 		// The recommended WordPress.org plugins.
 		array(
-			'name'      => __( 'Page Builder', 'freestore' ),
-			'slug'      => 'siteorigin-panels',
+			'name'      => __( 'Elementor Page Builder', 'freestore' ),
+			'slug'      => 'elementor',
 			'required'  => false,
 		),
 		array(
 			'name'      => __( 'woocommerce', 'freestore' ),
 			'slug'      => 'woocommerce',
-			'required'  => false,
-		),
-		array(
-			'name'      => __( 'Widgets Bundle', 'freestore' ),
-			'slug'      => 'siteorigin-panels',
-			'required'  => false,
-		),
-		array(
-			'name'      => __( 'Contact Form 7', 'freestore' ),
-			'slug'      => 'contact-form-7',
 			'required'  => false,
 		),
 		array(
@@ -391,6 +381,13 @@ function freestore_register_required_plugins() {
 	tgmpa( $plugins, $config );
 }
 add_action( 'tgmpa_register', 'freestore_register_required_plugins' );
+
+/**
+ * Elementor Check
+ */
+if ( ! defined( 'ELEMENTOR_PARTNER_ID' ) ) {
+	define( 'ELEMENTOR_PARTNER_ID', 2118 );
+}
 
 /**
  * Function to remove Category pre-title text

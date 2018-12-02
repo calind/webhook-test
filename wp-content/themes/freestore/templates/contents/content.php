@@ -9,17 +9,18 @@ if ( get_theme_mod( 'freestore-blog-layout' ) ) {
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( $post_blog_layout ); ?>>
 	
-	<?php if ( has_post_thumbnail() ) : ?>
-	<a href="<?php the_permalink() ?>" class="post-loop-thumbnail">
-		
-		<?php
-		if ( get_theme_mod( 'freestore-blog-layout' ) == 'blog-post-top-layout' ) {
-            the_post_thumbnail( 'freestore_blog_img_top' );
-        } else {
-            the_post_thumbnail( 'freestore_blog_img_side' );
-        } ?>
-		
-	</a>
+	<?php if ( has_post_thumbnail() ) :
+		$freestore_image_cut = 'freestore_blog_img_side';
+		if ( get_theme_mod( 'freestore-blog-list-img-cut' ) ) {
+			$freestore_image_cut = get_theme_mod( 'freestore-blog-list-img-cut' );
+		} else {
+			if ( get_theme_mod( 'freestore-blog-layout' ) == 'blog-post-top-layout' ) {
+	            $freestore_image_cut = 'freestore_blog_img_top';
+	        }
+		} ?>
+		<a href="<?php the_permalink() ?>" class="post-loop-thumbnail">
+			<?php the_post_thumbnail( $freestore_image_cut ); ?>
+		</a>
 	<?php endif; ?>
 	
 	<div class="post-loop-content">
@@ -35,28 +36,24 @@ if ( get_theme_mod( 'freestore-blog-layout' ) ) {
 		</header><!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php if ( has_excerpt() ) : ?>
-			
-				<?php the_excerpt(); ?>
-				
-			<?php else : ?>
-			
-				<?php
-					/* translators: %s: Name of current post */
-					the_content( sprintf(
-						wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'freestore' ), array( 'span' => array( 'class' => array() ) ) ),
-						the_title( '<span class="screen-reader-text">"', '"</span>', false )
-					) );
-				?>
-				
-			<?php endif; ?>
 
 			<?php
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'freestore' ),
-					'after'  => '</div>',
+			if ( has_excerpt() ) :
+				the_excerpt();
+			else :
+				/* translators: %s: Name of current post */
+				the_content( sprintf(
+					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'freestore' ), array( 'span' => array( 'class' => array() ) ) ),
+					the_title( '<span class="screen-reader-text">"', '"</span>', false )
 				) );
-			?>
+			endif; ?>
+
+			<?php
+			wp_link_pages( array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'freestore' ),
+				'after'  => '</div>',
+			) ); ?>
+			
 		</div><!-- .entry-content -->
 
 		<footer class="entry-footer">

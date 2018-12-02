@@ -77,6 +77,17 @@ View the theme settings under "Appearance" -> Customize.
 
 == Changelog ==
 
+#### 1.2.2
+* WooCommerce & FreeStore CSS/Style fixes
+* Fixed output when adding shortcode slider in theme settings
+* Added help link for Default Slider
+* Fixed social links escape attributes
+* Updated WooCommerce deprecated functions
+* Updated WooCommerce header cart to work with taxes
+* Added setting to replace default search with any other plugin search shortcode
+* Added setting to select which image cut the Blog uses
+* Updated language .pot file
+
 #### 1.2.1
 * Style tweaks/fixes
 * Added setting to set WooCommerce Shop Products per page

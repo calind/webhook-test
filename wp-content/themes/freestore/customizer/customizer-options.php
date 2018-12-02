@@ -148,13 +148,6 @@ function customizer_library_freestore_options() {
         'choices' => $choices,
         'default' => 'freestore-nav-underline'
     );
-    $options['freestore-header-search'] = array(
-        'id' => 'freestore-header-search',
-        'label'   => __( 'Remove Search', 'freestore' ),
-        'section' => $section,
-        'type'    => 'checkbox',
-        'default' => 0,
-    );
     $options['freestore-header-hide-social'] = array(
         'id' => 'freestore-header-hide-social',
         'label'   => __( 'Remove Social Links', 'freestore' ),
@@ -175,6 +168,26 @@ function customizer_library_freestore_options() {
         'section' => $section,
         'type'    => 'checkbox',
         'default' => 0,
+    );
+    $options['freestore-header-search'] = array(
+        'id' => 'freestore-header-search',
+        'label'   => __( 'Remove Search', 'freestore' ),
+        'section' => $section,
+        'type'    => 'checkbox',
+        'default' => 0,
+    );
+    $options['freestore-search-shortcode'] = array(
+        'id' => 'freestore-search-shortcode',
+        'label'   => __( 'Replace Default Search', 'freestore' ),
+        'section' => $section,
+        'type'    => 'text',
+        'description' => __( 'Enter a shortcode to replace the default search', 'freestore' )
+    );
+    $options['freestore-noteon-header-search'] = array(
+        'id' => 'freestore-noteon-header-search',
+        'section' => $section,
+        'type'    => 'help',
+        'description' => __( 'We recommend <a href="https://kairaweb.com/go/woocommerce-product-search/" target="_blank">WooCommerce Product Search</a> for a better product search for your store', 'freestore' )
     );
     
     
@@ -337,6 +350,14 @@ function customizer_library_freestore_options() {
         'type'    => 'select',
         'choices' => $choices,
         'default' => 'blog-post-standard-layout'
+    );
+    $options['freestore-blog-list-img-cut'] = array(
+        'id' => 'freestore-blog-list-img-cut',
+        'label'   => __( 'Blog Image Cut', 'freestore' ),
+        'section' => $section,
+        'type'    => 'imageselect',
+        'description' => __( 'Select which cut the Blog list uses<br />Recommended: Optimize images before upload', 'freestore' ),
+        'default' => 'freestore_blog_img_side'
     );
     $options['freestore-blog-cats'] = array(
         'id' => 'freestore-blog-cats',

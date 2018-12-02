@@ -27,6 +27,10 @@
     background-color: #0952A9;
     color: #FFF;
 }
+#customize-controls .description {
+    font-size: 12px;
+    opacity: 0.8;
+}
 
 .hide-section {
     display: none !important;
@@ -45,6 +49,10 @@
     color: inherit;
     text-decoration: none;
 }
+.kaira-help-txt {
+    font-size: 11px;
+    color: #969696;
+}
 
 #customize-control-freestore-logo-max-width,
 #customize-control-custom_logo,
@@ -62,6 +70,7 @@
 #customize-control-freestore-slider-size,
 #customize-control-freestore-page-titles,
 #customize-control-freestore-blog-layout,
+#customize-control-freestore-blog-list-img-cut,
 #customize-control-freestore-blog-cats,
 #customize-control-freestore-blog-search-left-sidebar,
 #customize-control-freestore-blog-search-full-width,

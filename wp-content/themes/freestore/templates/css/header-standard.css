@@ -129,7 +129,9 @@ a.header-cart-contents {
     display: none;
     opacity: 0;
 }
-.search-block .search-field {
+.search-block .search-field,
+.search-block .product-search input[type="text"].product-search-field,
+.aws-container .aws-search-field {
     font-size: 38px;
     margin: 39px 0 0;
     border: 0;
@@ -143,6 +145,13 @@ a.header-cart-contents {
 }
 .search-block .search-submit {
     display: none;
+}
+.aws-container .aws-search-field {
+    line-height: 20px;
+    height: auto;
+}
+.product-search.floating .product-search-results {
+    top: 102px;
 }
     
 .show-site-search .search-block {

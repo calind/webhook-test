@@ -97,6 +97,16 @@ if ( ! function_exists( 'customizer_library_register' ) ) : /**
 
 		                break;
 
+		            case 'help':
+
+	                    $wp_customize->add_control(
+	                        new Customizer_Library_Help(
+	                            $wp_customize, $option['id'], $option
+	                        )
+	                    );
+
+	                	break;
+
 					case 'color':
 
 						$wp_customize->add_control(
@@ -124,6 +134,23 @@ if ( ! function_exists( 'customizer_library_register' ) ) : /**
 						);
 
 						break;
+
+					case 'imageselect':
+
+	                    $wp_customize->add_control(
+	                        new Customizer_Library_Imageselect(
+	                            $wp_customize,
+	                            $option['id'], array(
+									'label'             => $option['label'],
+									'section'           => $option['section'],
+									'priority'          => $option['priority'],
+									'description'      => $option['description'],
+									'default'          => $option['default']
+								)
+	                        )
+	                    );
+
+	                	break;
 
 					case 'upload':
 

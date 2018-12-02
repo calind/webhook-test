@@ -4,7 +4,7 @@ Theme URI: https://kairaweb.com/theme/freestore/
 Author: Kaira
 Author URI: https://kairaweb.com/
 Description: With FreeStore we give you everything for free... a fully responsive multipurpose WordPress/WooCommerce premium theme to download and use as you want. We packed FreeStore with a bunch of settings, all built neatly into the WordPress Customizer so you can view your changes live before going live, we've also integrated with some of the best plugins to help you build a beautiful website or online e-commerce store. Create detailed page layouts with SiteOrigin's easy to use drag and drop Page Builder... Setup your shop and sell products beautifully with the WooCommerce e-commerce plugin... FreeStore comes with lots of different layout settings and multiple page templates to build the website you need! Have it all for FREE, donate if you like ;) Give it a go :)
-Version: 1.2.1
+Version: 1.2.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: freestore
@@ -1152,6 +1152,29 @@ body.freestore-page-styling-raised.page-template-template-left-sidebar .widget-a
     width: 100%;
     border-top: 3px solid #000000;
 }
+.home-slider-wrap-hint {
+    position: absolute;
+    width: 220px;
+    bottom: 35px;
+    left: 50%;
+    margin: 0 0 0 -110px;
+    padding: 3px 0 4px;
+    text-align: center;
+    z-index: 9;
+    font-size: 11px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    opacity: 0;
+    
+    -webkit-transition: opacity 0.3s ease 0s;
+    -moz-transition: opacity 0.3s ease 0s;
+    -ms-transition: opacity 0.3s ease 0s;
+    -o-transition: opacity 0.3s ease 0s;
+    transition: opacity 0.3s ease 0s;
+}
+.home-slider-wrap-hint a {
+    font-size: 12px;
+}
 .freestore-page-styling-raised .home-slider-wrap {
     margin: 0 0 30px;
 }
@@ -1285,6 +1308,9 @@ body.freestore-page-styling-raised.page-template-template-left-sidebar .widget-a
 .home-slider-prev:hover,
 .home-slider-next:hover {
 	background-color: rgba(255, 255, 255, 0.2);
+}
+.home-slider-wrap:hover .home-slider-wrap-hint {
+    opacity: 1;
 }
 
 /* -------- Error 404 Elements -------- */
@@ -1870,40 +1896,34 @@ body.search-results.freestore-blog-search-left-sidebar.freestore-page-styling-ra
 
 /* -- Shop Left Sidebar -- */
 body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar #container,
-body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar #container,
+body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar .content-area,
 body.archive.woocommerce.freestore-shop-archives-left-sidebar #container,
-body.archive.woocommerce-page.freestore-shop-archives-left-sidebar #container,
+body.archive.woocommerce.freestore-shop-archives-left-sidebar .content-area,
 body.single-product.woocommerce.freestore-shop-single-left-sidebar #container,
-body.single-product.woocommerce-page.freestore-shop-single-left-sidebar #container {
+body.single-product.woocommerce.freestore-shop-single-left-sidebar .content-area {
     box-shadow: 1px 0 0 #D7D7D7 inset;
     float: right;
     padding: 30px 0 30px 2%;
 }
 body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar.freestore-page-styling-raised #container,
-body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar.freestore-page-styling-raised #container,
+body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar.freestore-page-styling-raised .content-area,
 body.archive.woocommerce.freestore-shop-archives-left-sidebar.freestore-page-styling-raised #container,
-body.archive.woocommerce-page.freestore-shop-archives-left-sidebar.freestore-page-styling-raised #container,
+body.archive.woocommerce.freestore-shop-archives-left-sidebar.freestore-page-styling-raised .content-area,
 body.single-product.woocommerce.freestore-shop-single-left-sidebar.freestore-page-styling-raised #container,
-body.single-product.woocommerce-page.freestore-shop-single-left-sidebar.freestore-page-styling-raised #container {
+body.single-product.woocommerce.freestore-shop-single-left-sidebar.freestore-page-styling-raised .content-area {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
     padding: 25px 25px;
 }
 body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar .widget-area,
-body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar .widget-area,
 body.archive.woocommerce.freestore-shop-archives-left-sidebar .widget-area,
-body.archive.woocommerce-page.freestore-shop-archives-left-sidebar .widget-area,
-body.single-product.woocommerce.freestore-shop-single-left-sidebar .widget-area,
-body.single-product.woocommerce-page.freestore-shop-single-left-sidebar .widget-area {
+body.single-product.woocommerce.freestore-shop-single-left-sidebar .widget-area {
     box-shadow: 1px 0 0 #D7D7D7;
     float: left;
     padding: 43px 2% 40px 0;
 }
 body.post-type-archive-product.woocommerce.freestore-shop-left-sidebar.freestore-page-styling-raised .widget-area,
-body.post-type-archive-product.woocommerce-page.freestore-shop-left-sidebar.freestore-page-styling-raised .widget-area,
 body.archive.woocommerce.freestore-shop-archives-left-sidebar.freestore-page-styling-raised .widget-area,
-body.archive.woocommerce-page.freestore-shop-archives-left-sidebar.freestore-page-styling-raised .widget-area,
-body.single-product.woocommerce.freestore-shop-single-left-sidebar.freestore-page-styling-raised .widget-area,
-body.single-product.woocommerce-page.freestore-shop-single-left-sidebar.freestore-page-styling-raised .widget-area {
+body.single-product.woocommerce.freestore-shop-single-left-sidebar.freestore-page-styling-raised .widget-area {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
     float: left;
     padding: 25px 25px;
@@ -1912,47 +1932,38 @@ body.single-product.woocommerce-page.freestore-shop-single-left-sidebar.freestor
 
 /* -- Shop Full Width -- */
 body.post-type-archive-product.woocommerce.freestore-shop-full-width #container,
-body.post-type-archive-product.woocommerce-page.freestore-shop-full-width #container,
+body.post-type-archive-product.woocommerce.freestore-shop-full-width .content-area,
 body.archive.woocommerce.freestore-shop-archives-full-width #container,
-body.archive.woocommerce-page.freestore-shop-archives-full-width #container,
+body.archive.woocommerce.freestore-shop-archives-full-width .content-area,
 body.single-product.woocommerce.freestore-shop-single-full-width #container,
-body.single-product.woocommerce-page.freestore-shop-single-full-width #container {
+body.single-product.woocommerce.freestore-shop-single-full-width .content-area {
 	box-shadow: none;
 	width: 100%;
 	float: none;
 	padding: 25px 0;
 }
 body.post-type-archive-product.woocommerce.freestore-shop-full-width.freestore-page-styling-raised #container,
-body.post-type-archive-product.woocommerce-page.freestore-shop-full-width.freestore-page-styling-raised #container,
+body.post-type-archive-product.woocommerce.freestore-shop-full-width.freestore-page-styling-raised .content-area,
 body.archive.woocommerce.freestore-shop-archives-full-width.freestore-page-styling-raised #container,
-body.archive.woocommerce-page.freestore-shop-archives-full-width.freestore-page-styling-raised #container,
+body.archive.woocommerce.freestore-shop-archives-full-width.freestore-page-styling-raised .content-area,
 body.single-product.woocommerce.freestore-shop-single-full-width.freestore-page-styling-raised #container,
-body.single-product.woocommerce-page.freestore-shop-single-full-width.freestore-page-styling-raised #container {
+body.single-product.woocommerce.freestore-shop-single-full-width.freestore-page-styling-raised .content-area {
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
 	padding: 25px 25px;
 }
 body.post-type-archive-product.woocommerce.freestore-shop-full-width .widget-area,
-body.post-type-archive-product.woocommerce-page.freestore-shop-full-width .widget-area,
 body.archive.woocommerce.freestore-shop-archives-full-width .widget-area,
-body.archive.woocommerce-page.freestore-shop-archives-full-width .widget-area,
-body.single-product.woocommerce.freestore-shop-single-full-width .widget-area,
-body.single-product.woocommerce-page.freestore-shop-single-full-width .widget-area {
+body.single-product.woocommerce.freestore-shop-single-full-width .widget-area {
 	display: none;
 }
 body.post-type-archive-product.woocommerce.freestore-shop-full-width .woocommerce-breadcrumb,
-body.post-type-archive-product.woocommerce-page.freestore-shop-full-width .woocommerce-breadcrumb,
 body.archive.woocommerce.freestore-shop-archives-full-width .woocommerce-breadcrumb,
-body.archive.woocommerce-page.freestore-shop-archives-full-width .woocommerce-breadcrumb,
-body.single-product.woocommerce.freestore-shop-single-full-width .woocommerce-breadcrumb,
-body.single-product.woocommerce-page.freestore-shop-single-full-width .woocommerce-breadcrumb {
+body.single-product.woocommerce.freestore-shop-single-full-width .woocommerce-breadcrumb {
 	right: 0;
 }
 body.post-type-archive-product.woocommerce.freestore-shop-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
-body.post-type-archive-product.woocommerce-page.freestore-shop-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
 body.archive.woocommerce.freestore-shop-archives-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
-body.archive.woocommerce-page.freestore-shop-archives-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
-body.single-product.woocommerce.freestore-shop-single-full-width.freestore-page-styling-raised .woocommerce-breadcrumb,
-body.single-product.woocommerce-page.freestore-shop-single-full-width.freestore-page-styling-raised .woocommerce-breadcrumb {
+body.single-product.woocommerce.freestore-shop-single-full-width.freestore-page-styling-raised .woocommerce-breadcrumb {
 	right: 25px;
 }
 

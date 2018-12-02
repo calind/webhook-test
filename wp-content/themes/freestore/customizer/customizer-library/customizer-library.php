@@ -35,6 +35,11 @@ if ( ! class_exists( 'Customizer_Library' ) ) : // Helper functions to output th
 
 // Custom Donate controls for the theme customizer.
 	require plugin_dir_path( __FILE__ ) . 'custom-controls/donate.php';
+// Custom Help controls for the theme customizer.
+	require plugin_dir_path( __FILE__ ) . 'custom-controls/help.php';
+
+// Custom upsell controls for the theme customizer.
+	require plugin_dir_path( __FILE__ ) . 'custom-controls/imageselect.php';
 
 // Custom controls for the theme customizer.
 	if ( version_compare( $GLOBALS['wp_version'], '4.0', '<' ) ) {

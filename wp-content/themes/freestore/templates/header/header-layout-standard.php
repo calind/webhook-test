@@ -37,7 +37,11 @@ global $woocommerce; ?>
 		
 		<?php if ( !get_theme_mod( 'freestore-header-search' ) ) : ?>
 		    <div class="search-block">
-		        <?php get_search_form(); ?>
+		        <?php if ( get_theme_mod( 'freestore-search-shortcode' ) ) : ?>
+		    		<?php echo do_shortcode( sanitize_text_field( get_theme_mod( 'freestore-search-shortcode' ) ) ); ?>
+		    	<?php else : ?>
+		        	<?php get_search_form(); ?>
+		        <?php endif; ?>
 		    </div>
 		<?php endif; ?>
 		
@@ -60,14 +64,14 @@ global $woocommerce; ?>
 			<?php if ( !get_theme_mod( 'freestore-header-remove-cart' ) ) : ?>
 				<div class="header-cart">
 					
-	                <a class="header-cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart', 'freestore' ); ?>">
-	                    <span class="header-cart-amount">
-	                        <?php echo sprintf( _n( '(%d)', '(%d)', $woocommerce->cart->cart_contents_count, 'freestore' ), $woocommerce->cart->cart_contents_count); ?> - <?php echo $woocommerce->cart->get_cart_total(); ?>
-	                    </span>
-	                    <span class="header-cart-checkout <?php echo ( $woocommerce->cart->cart_contents_count > 0 ) ? sanitize_html_class( 'cart-has-items' ) : ''; ?>">
-	                        <i class="fa fa-shopping-cart"></i>
-	                    </span>
-	                </a>
+	                <a class="header-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'freestore' ); ?>">
+			            <span class="header-cart-amount">
+			                <?php echo sprintf( _n( '(%d)', '(%d)', WC()->cart->get_cart_contents_count(), 'freestore' ), WC()->cart->get_cart_contents_count() ); ?><span> - <?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span>
+			            </span>
+			            <span class="header-cart-checkout <?php echo ( WC()->cart->get_cart_contents_count() > 0 ) ? sanitize_html_class( 'cart-has-items' ) : ''; ?>">
+			                <i class="fa fa-shopping-cart"></i>
+			            </span>
+			        </a>
 					
 				</div>
 			<?php endif; ?>
