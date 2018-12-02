@@ -58,6 +58,7 @@ class wfDiagnostic
 				'description' => __('General information about the Wordfence installation.', 'wordfence'),
 				'tests' => array(
 					'wfVersion' => __('Wordfence Version', 'wordfence'),
+					'geoIPVersion' => __('GeoIP Version', 'wordfence'),
 				),
 			),
 			'Filesystem' => array(
@@ -83,6 +84,8 @@ class wfDiagnostic
 					'wafLogPath' => __('WAF log path', 'wordfence'),
 					'wafSubdirectoryInstall' => __('WAF subdirectory installation', 'wordfence'),
 					'wafAutoPrependFilePath' => __('wordfence-waf.php path', 'wordfence'),
+					'wafFilePermissions' => __('WAF File Permissions', 'wordfence'),
+					'wafRecentlyRemoved' => __('Recently removed wflogs files', 'wordfence'),
 				),
 			),
 			'MySQL' => array(
@@ -107,6 +110,11 @@ class wfDiagnostic
 					'hasOpenSSL' => __('Checking for OpenSSL support', 'wordfence'),
 					'openSSLVersion' => __('Checking OpenSSL version', 'wordfence'),
 					'hasCurl'    => __('Checking for cURL support', 'wordfence'),
+					'curlFeatures'    => __('cURL Features Code', 'wordfence'),
+					'curlHost'    => __('cURL Host', 'wordfence'),
+					'curlProtocols'    => __('cURL Support Protocols', 'wordfence'),
+					'curlSSLVersion'    => __('cURL SSL Version', 'wordfence'),
+					'curlLibZVersion'    => __('cURL libz Version', 'wordfence'),
 					'displayErrors' => __('Checking <code>display_errors</code><br><em> (<a href="http://php.net/manual/en/errorfunc.configuration.php#ini.display-errors" target="_blank" rel="noopener noreferrer">Should be disabled on production servers</a>)</em>', 'wordfence'),
 				)
 			),
@@ -116,6 +124,7 @@ class wfDiagnostic
 					'connectToServer1' => __('Connecting to Wordfence servers (http)', 'wordfence'),
 					'connectToServer2' => __('Connecting to Wordfence servers (https)', 'wordfence'),
 					'connectToSelf' => __('Connecting back to this site', 'wordfence'),
+					'serverIP' => __('IP(s) used by this server', 'wordfence'),
 				)
 			),
 		);
@@ -154,6 +163,15 @@ class wfDiagnostic
 	public function wfVersion() {
 		return array('test' => true, 'message' => WORDFENCE_VERSION . ' (' . WORDFENCE_BUILD_NUMBER . ')');
 	}
+	
+	public function geoIPVersion() {
+		return array('test' => true, 'infoOnly' => true, 'message' => wfUtils::geoIPVersion());
+	}
+	
+	public function geoIPError() {
+		$error = wfUtils::last_error('geoip');
+		return array('test' => true, 'infoOnly' => true, 'message' => $error ? $error : __('None', 'wordfence'));
+	}
 
 	public function isPluginReadable() {
 		return is_readable(WORDFENCE_PATH);
@@ -173,7 +191,6 @@ class wfDiagnostic
 			WFWAF_LOG_PATH . 'ips.php', 
 			WFWAF_LOG_PATH . 'config.php',
 			WFWAF_LOG_PATH . 'rules.php',
-			WFWAF_LOG_PATH . 'wafRules.rules',
 		);
 		$unreadable = array();
 		foreach ($files as $f) {
@@ -202,7 +219,6 @@ class wfDiagnostic
 			WFWAF_LOG_PATH . 'ips.php',
 			WFWAF_LOG_PATH . 'config.php',
 			WFWAF_LOG_PATH . 'rules.php',
-			WFWAF_LOG_PATH . 'wafRules.rules',
 		);
 		$unwritable = array();
 		foreach ($files as $f) {
@@ -318,6 +334,52 @@ class wfDiagnostic
 		}
 		return array('test' => true, 'infoOnly' => true, 'message' => $path);
 	}
+	
+	public function wafFilePermissions() {
+		if (defined('WFWAF_LOG_FILE_MODE')) {
+			return array('test' => true, 'infoOnly' => true, 'message' => sprintf(__('%s - using constant', 'wordfence'), str_pad(decoct(WFWAF_LOG_FILE_MODE), 4, '0', STR_PAD_LEFT)));
+		}
+		
+		if (defined('WFWAF_LOG_PATH')) {
+			$template = rtrim(WFWAF_LOG_PATH, '/') . '/template.php';
+			if (file_exists($template)) {
+				$stat = @stat($template);
+				if ($stat !== false) {
+					$mode = $stat[2];
+					$updatedMode = 0600;
+					if (($mode & 0020) == 0020) {
+						$updatedMode = $updatedMode | 0060;
+					}
+					return array('test' => true, 'infoOnly' => true, 'message' => sprintf(__('%s - using template', 'wordfence'), str_pad(decoct($updatedMode), 4, '0', STR_PAD_LEFT)));
+				}
+			}
+		}
+		return array('test' => true, 'infoOnly' => true, 'message' => __('0660 - using default', 'wordfence'));
+	}
+	
+	public function wafRecentlyRemoved() {
+		$removalHistory = wfConfig::getJSON('diagnosticsWflogsRemovalHistory', array());
+		if (empty($removalHistory)) {
+			return array('test' => true, 'infoOnly' => true, 'message' => __('None', 'wordfence'));
+		}
+		
+		$message = array();
+		foreach ($removalHistory as $r) {
+			$m = wfUtils::formatLocalTime('M j, Y', $r[0]) . ': (' . count($r[1]) . ')';
+			$r[1] = array_filter($r[1], array($this, '_filterOutNestedEntries'));
+			$m .= ' ' . implode(', ', array_slice($r[1], 0, 5));
+			if (count($r[1]) > 5) {
+				$m .= ', ...';
+			}
+			$message[] = $m;
+		}
+		
+		return array('test' => true, 'infoOnly' => true, 'message' => implode("\n", $message));
+	}
+	
+	private function _filterOutNestedEntries($a) {
+		return !is_array($a);
+	}
 
 	public function processOwner() {
 		$disabledFunctions = explode(',', ini_get('disable_functions'));
@@ -377,10 +439,10 @@ class wfDiagnostic
 		if (!function_exists('openssl_verify') || !defined('OPENSSL_VERSION_NUMBER') || !defined('OPENSSL_VERSION_TEXT')) {
 			return false;
 		}
-		$compare = wfUtils::openssl_version_compare('1.0.1');
+		$compare = wfVersionCheckController::shared()->checkOpenSSLVersion();
 		return array(
-			'test' => $compare < 0,
-			'message'  => OPENSSL_VERSION_TEXT,
+			'test' => $compare == wfVersionCheckController::VERSION_COMPATIBLE,
+			'message'  => OPENSSL_VERSION_TEXT . ' (0x' . dechex(OPENSSL_VERSION_NUMBER) . ')',
 		);
 	}
 
@@ -391,7 +453,67 @@ class wfDiagnostic
 		$version = curl_version();
 		return array(
 			'test' => version_compare($version['version'], $this->minVersion['cURL'], '>='),
-			'message'  => $version['version'],
+			'message'  => $version['version'] . ' (0x' . dechex($version['version_number']) . ')',
+		);
+	}
+	
+	public function curlFeatures() {
+		if (!is_callable('curl_version')) {
+			return false;
+		}
+		$version = curl_version();
+		return array(
+			'test' => true,
+			'message'  => '0x' . dechex($version['features']),
+			'infoOnly' => true,
+		);
+	}
+	
+	public function curlHost() {
+		if (!is_callable('curl_version')) {
+			return false;
+		}
+		$version = curl_version();
+		return array(
+			'test' => true,
+			'message'  => $version['host'],
+			'infoOnly' => true,
+		);
+	}
+	
+	public function curlProtocols() {
+		if (!is_callable('curl_version')) {
+			return false;
+		}
+		$version = curl_version();
+		return array(
+			'test' => true,
+			'message'  => implode(', ', $version['protocols']),
+			'infoOnly' => true,
+		);
+	}
+	
+	public function curlSSLVersion() {
+		if (!is_callable('curl_version')) {
+			return false;
+		}
+		$version = curl_version();
+		return array(
+			'test' => true,
+			'message'  => $version['ssl_version'],
+			'infoOnly' => true,
+		);
+	}
+	
+	public function curlLibZVersion() {
+		if (!is_callable('curl_version')) {
+			return false;
+		}
+		$version = curl_version();
+		return array(
+			'test' => true,
+			'message'  => $version['libz_version'],
+			'infoOnly' => true,
 		);
 	}
 	
@@ -485,6 +607,15 @@ class wfDiagnostic
 			'test' => false,
 			'message' => $message,
 			'detail' => $detail,
+		);
+	}
+	
+	public function serverIP() {
+		$serverIPs = wfUtils::serverIPs();
+		return array(
+			'test' => true,
+			'infoOnly' => true,
+			'message' => implode(',', $serverIPs),
 		);
 	}
 
